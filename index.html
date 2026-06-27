@@ -706,7 +706,210 @@
     transform: translateX(-50%) translateY(0);
     opacity: 1;
   }
+
+  /* ===== STUDY GUIDE STYLES ===== */
+  .study-jump {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 12px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+  }
+  .study-jump-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .study-jump-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .study-jump-btn {
+    background: var(--national-soft);
+    color: var(--national);
+    border: 0;
+    border-radius: 8px;
+    padding: 8px 4px;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  .study-jump-btn:active { transform: scale(0.95); }
+
+  .study-section {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  .study-section-header {
+    padding: 14px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--bg-card);
+    border: 0;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    transition: background 0.15s;
+  }
+  .study-section-header:active { background: var(--bg-elev); }
+  .study-section-num {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--national-soft);
+    color: var(--national);
+    display: grid;
+    place-items: center;
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-weight: 600;
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+  .study-section.expanded .study-section-num {
+    background: var(--national);
+    color: white;
+  }
+  .study-section-title {
+    flex: 1;
+    font-weight: 600;
+    font-size: 14.5px;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+  .study-section-weight {
+    font-size: 11px;
+    color: var(--ink-mute);
+    font-weight: 600;
+    background: var(--bg-elev);
+    padding: 2px 8px;
+    border-radius: 999px;
+    flex-shrink: 0;
+  }
+  .study-section-chev {
+    color: var(--ink-mute);
+    transition: transform 0.2s;
+    flex-shrink: 0;
+  }
+  .study-section.expanded .study-section-chev {
+    transform: rotate(180deg);
+  }
+  .study-section-body {
+    display: none;
+    padding: 4px 16px 16px;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .study-section.expanded .study-section-body {
+    display: block;
+    animation: slideIn 0.3s ease-out;
+  }
+  .study-section-body h4 {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--national-deep);
+    margin: 16px 0 6px;
+    line-height: 1.3;
+  }
+  .study-section-body h4:first-child { margin-top: 12px; }
+  .study-section-body p {
+    margin: 0 0 10px;
+    color: var(--ink);
+  }
+  .study-section-body ul {
+    margin: 0 0 10px;
+    padding-left: 20px;
+  }
+  .study-section-body li {
+    margin-bottom: 5px;
+    color: var(--ink);
+  }
+  .study-section-body b, .study-section-body strong {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .study-section-body em, .study-section-body i {
+    color: var(--ink-soft);
+  }
+  .study-callout {
+    background: var(--warn-soft);
+    border-left: 3px solid var(--warn);
+    padding: 12px 14px;
+    border-radius: 8px;
+    margin: 12px 0;
+    font-size: 13.5px;
+  }
+  .study-callout.weak {
+    background: var(--danger-soft);
+    border-left-color: var(--danger);
+  }
+  .study-callout.weak b { color: var(--danger); }
+  .study-callout.hook {
+    background: var(--success-soft);
+    border-left-color: var(--success);
+  }
+  .study-callout.hook b { color: var(--success); }
+  .study-callout.verified {
+    background: var(--national-soft);
+    border-left-color: var(--national);
+  }
+  .study-callout.verified b { color: var(--national); }
+  .study-callout-label {
+    font-size: 9px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--warn);
+    margin-bottom: 4px;
+  }
+  .study-callout.weak .study-callout-label { color: var(--danger); }
+  .study-callout.hook .study-callout-label { color: var(--success); }
+  .study-callout.verified .study-callout-label { color: var(--national); }
+  .study-table {
+    background: var(--bg-elev);
+    border-radius: 8px;
+    padding: 4px;
+    margin: 10px 0;
+    font-size: 13px;
+  }
+  .study-table-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 10px;
+    padding: 8px 10px;
+    border-bottom: 1px solid var(--line);
+  }
+  .study-table-row:last-child { border-bottom: 0; }
+  .study-table-row.head {
+    background: var(--national);
+    color: white;
+    border-radius: 6px 6px 0 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    border-bottom: 0;
+  }
+  .study-table-row > div:first-child {
+    font-weight: 600;
+    color: var(--ink);
+  }
 </style>
+
 </head>
 <body>
 
@@ -788,8 +991,8 @@
     <div class="topic-list" id="topicList"></div>
   </div>
 
-  <!-- STUDY -->
-  <div class="view" id="view-study">
+  <!-- DRILL SESSION -->
+  <div class="view" id="view-session">
     <div class="study-header">
       <button class="back-btn" onclick="exitStudy()">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
@@ -806,18 +1009,29 @@
   <!-- HOOKS -->
   <div class="view" id="view-hooks">
     <h1 class="greeting">Memory hooks</h1>
-    <p class="greeting-sub">Review these the morning of your June 20 exam.</p>
+    <p class="greeting-sub">Review these the morning of your July 2 exam.</p>
     <div id="hooksList"></div>
   </div>
 
   <!-- PLAN -->
   <div class="view" id="view-plan">
     <h1 class="greeting">Study plan</h1>
-    <p class="greeting-sub">Daily 30-45 min sessions through June 20.</p>
+    <p class="greeting-sub">6-day retake plan through July 2.</p>
     <div id="planList"></div>
     <div class="danger-row">
       <button class="danger-btn" onclick="resetProgress()">Reset all progress</button>
     </div>
+  </div>
+
+  <!-- STUDY GUIDE -->
+  <div class="view" id="view-study">
+    <h1 class="greeting">Study guide</h1>
+    <p class="greeting-sub">All 8 content areas. Tap a section to expand.</p>
+    <div class="study-jump">
+      <div class="study-jump-label">Jump to section</div>
+      <div class="study-jump-grid" id="studyJumpGrid"></div>
+    </div>
+    <div id="studyList"></div>
   </div>
 
 </div>
@@ -827,6 +1041,10 @@
   <button class="tab active" data-view="home" onclick="showView('home')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9v9a2 2 0 01-2 2h-4a2 2 0 01-2-2v-4h-2v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-9z"/></svg>
     Home
+  </button>
+  <button class="tab" data-view="study" onclick="showView('study')">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+    Study
   </button>
   <button class="tab" data-view="plan" onclick="showView('plan')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
@@ -1772,25 +1990,788 @@ window.HOOKS = {
 };
 
 window.PLAN = [
-  {day:'Mon Jun 2', title:'Contracts deep-dive', detail:'4 essentials, consent vs consideration, Statute of Frauds. 30-40 min in app.', time:'40 min'},
-  {day:'Tue Jun 3', title:'Estates & ownership', detail:'Life estate, condo classification, joint tenancy (PITT), fee simple.', time:'40 min'},
-  {day:'Wed Jun 4', title:'Land use & zoning', detail:'Variance types, restrictive covenants, eminent domain.', time:'40 min'},
-  {day:'Thu Jun 5', title:'Financing part 1', detail:'LE/CD timing, FHA/VA/USDA/Conv, PMI, points.', time:'40 min'},
-  {day:'Fri Jun 6', title:'Financing part 2 + Math', detail:'Amortization, APR, ARM. Math formulas.', time:'45 min'},
-  {day:'Sat Jun 7', title:'Light review or rest', detail:'Optional Memory Hooks review.', time:'30 min'},
-  {day:'Sun Jun 8', title:'Fair Housing deep-dive', detail:'7 protected classes. Mrs. Murphy. Steering/blockbusting/redlining.', time:'40 min'},
-  {day:'Mon Jun 9', title:'Agency & Property Mgmt', detail:'Client vs customer. OLDCAR. Dual agency. Lease types.', time:'40 min'},
-  {day:'Tue Jun 10', title:'Title, Deeds, Liens', detail:'Warranty vs quitclaim. Title insurance. Lien priority.', time:'40 min'},
-  {day:'Wed Jun 11', title:'Math drill day', detail:'All formulas. Worked examples. Net to seller, cap rate, mills.', time:'60 min'},
-  {day:'Thu Jun 12', title:'Disclosures + RESPA', detail:'CLUE, lead paint, RESPA kickbacks.', time:'40 min'},
-  {day:'Fri Jun 13', title:'Water, Probate, Appraisal', detail:'Avulsion vs erosion. Operation of law. CMA vs appraisal.', time:'40 min'},
-  {day:'Sat Jun 14', title:'Mid-prep mock', detail:'40 questions in app. Identify weak spots.', time:'60 min'},
-  {day:'Sun Jun 15', title:'Drill missed concepts', detail:'Use "Missed concepts" session.', time:'45 min'},
-  {day:'Mon Jun 16', title:'Ethics + EXCEPT trap drill', detail:'Predatory lending. EXCEPT-style questions.', time:'40 min'},
-  {day:'Tue Jun 17', title:'Full 80q National Final Prep Exam', detail:'Timed. Aim for 85%+.', time:'150 min'},
-  {day:'Wed Jun 18', title:'Review missed + Memory Hooks', detail:'Everything missed Tuesday. Hooks 2x.', time:'45 min'},
-  {day:'Thu Jun 19', title:'Final review + early sleep', detail:'Memory Hooks only. NO new content. Bed by 10pm.', time:'30 min'},
-  {day:'Fri Jun 20', title:'NATIONAL EXAM 🎯', detail:'Protein breakfast. Hooks on drive. Arrive 30 min early.', time:''},
+  {day:'Fri Jun 26', title:'Rest day', detail:'You scored 72/75. The data is fresh. Skim the cheat sheet, no drilling. Recovery matters.', time:'15 min optional'},
+  {day:'Sat Jun 27', title:'Financing & Settlement deep-dive', detail:'Drill Section VII (18 cards). TRID timing & tolerances, USDA, ECOA, predatory lending, deed of trust.', time:'40 min'},
+  {day:'Sun Jun 28', title:'Disclosures & Environmental deep-dive', detail:'Drill Section VI (16 cards). CERCLA strict/joint/several, Phase I/II ESAs, brownfields, flood zones.', time:'40 min'},
+  {day:'Mon Jun 29', title:'Real Estate Practice + Real Property', detail:'Drill Sections V and I. Fair housing exemptions, property mgmt parties. New cards on emblements, surveys, encroachments.', time:'45 min'},
+  {day:'Tue Jun 30', title:'Math drill — lock in formulas', detail:'All 19 math cards. Cap rate, net-to-seller (DIVIDE), split commissions, discount points.', time:'45 min'},
+  {day:'Wed Jul 1', title:'Mock exam + Memory Hooks', detail:'Take the 80q Final Prep timed (aim 85%+). Then re-read Memory Hooks. Bed by 10pm.', time:'2 hr'},
+  {day:'Thu Jul 2', title:'NATIONAL EXAM RETAKE 🎯', detail:'Protein breakfast. Cheat sheet on the drive. Arrive 30 min early. You\'ve already done this once. Trust your prep.', time:''},
+];
+</script>
+
+<!-- ====================================================
+     STUDY GUIDE CONTENT — All 8 Pearson VUE content areas
+     Mirrors the comprehensive PDF, formatted for mobile reading
+     ==================================================== -->
+<script id="data-study">
+window.STUDY_GUIDE = [
+  {
+    num: "I",
+    title: "Real Property Characteristics, Legal Descriptions, and Property Use",
+    weight: "11 items",
+    body: `
+      <h4>1.1 Real Property vs. Personal Property</h4>
+      <p><b>Real property</b> = land + improvements + bundle of rights. Transfers by deed. <b>Personal property</b> (chattels) = movable items not affixed. Transfers by bill of sale.</p>
+      <p><b>Fixtures</b> — items that were personal property but became part of the real estate when affixed. Transfer with the property unless excluded in writing.</p>
+      <p><b>Five fixture tests (MARIA):</b></p>
+      <ul>
+        <li><b>M</b>ethod of attachment — bolted/wired/plumbed = fixture indicator</li>
+        <li><b>A</b>daptation — custom-fitted to the property = fixture</li>
+        <li><b>R</b>elationship of parties — landlord/tenant context matters</li>
+        <li><b>I</b>ntention of installer — did they intend permanence?</li>
+        <li><b>A</b>greement — contract terms control if specified</li>
+      </ul>
+      <p><b>Trade fixtures</b> = commercial tenant's business equipment. Remains personal property of tenant; removable at lease end if damage is repaired.</p>
+      <p><b>Emblements</b> = annual cultivated crops. Treated as personal property even though growing on real estate. Tenant keeps right to harvest.</p>
+
+      <h4>1.2 Characteristics of Real Property</h4>
+      <div class="study-callout hook">
+        <div class="study-callout-label">MEMORY HOOK</div>
+        Physical = <b>I-I-N</b> (Immobility, Indestructibility, Non-homogeneity). Economic = <b>SIPA</b> (Scarcity, Improvement/modification, Permanence of investment, Area preference/situs).
+      </div>
+      <p><b>Physical characteristics:</b> immobility (land can't be moved), indestructibility (land endures), non-homogeneity (every parcel is unique).</p>
+      <p><b>Economic characteristics:</b> scarcity, improvements (modify utility), permanence of investment (improvements last long), area preference/situs (location preference).</p>
+
+      <h4>1.3 The Bundle of Rights</h4>
+      <p>Ownership = a bundle of distinct rights that can be separated:</p>
+      <ul>
+        <li><b>Possession</b> — physically hold the property</li>
+        <li><b>Control</b> — determine how it's used</li>
+        <li><b>Exclusion</b> — keep others off</li>
+        <li><b>Enjoyment</b> — use peacefully</li>
+        <li><b>Disposition</b> — sell, give, will, lease, encumber</li>
+      </ul>
+
+      <h4>1.4 Estates in Land — Freehold</h4>
+      <p><b>Fee simple absolute</b> — highest, most complete ownership. Forever, fully transferable, no conditions. Default unless less is specified.</p>
+      <p><b>Fee simple defeasible</b> — subject to a condition that could terminate ownership. Two subtypes: determinable (auto-reversion) and condition subsequent (grantor must reclaim).</p>
+      <p><b>Life estate</b> — ownership lasting only for a specified person's life.</p>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>Life tenant has 4 of 5 sticks.</b> Possession, control, exclusion, enjoyment — yes. <b>Transferability at death — NO.</b> They CAN sell/lease their life interest (which ends at death) but CANNOT will the property to heirs. Property reverts to grantor (reversion) or passes to remainderman (remainder).
+      </div>
+
+      <h4>1.5 Estates in Land — Leasehold</h4>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Estate</div><div>Description</div></div>
+        <div class="study-table-row"><div>Estate for years</div><div>Fixed term with definite start/end. No notice needed — ends automatically. Can be any length.</div></div>
+        <div class="study-table-row"><div>Periodic tenancy</div><div>Continues for successive periods until terminated by proper notice (month-to-month).</div></div>
+        <div class="study-table-row"><div>Tenancy at will</div><div>Indefinite, terminable any time by either party. With landlord's consent.</div></div>
+        <div class="study-table-row"><div>Tenancy at sufferance</div><div>Lowest form. Holdover tenant without consent. Becomes periodic if landlord accepts rent.</div></div>
+      </div>
+
+      <h4>1.6 Legal Descriptions</h4>
+      <p><b>Metes and bounds</b> — directions (bounds) + distances (metes) from a point of beginning, closing back to POB. Used in PA and original colonies.</p>
+      <p><b>Rectangular survey (government survey)</b> — used west of PA. Townships, sections, meridians, base lines.</p>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Unit</div><div>Dimensions</div></div>
+        <div class="study-table-row"><div>Township</div><div>6 mi × 6 mi = 36 sq mi = 36 sections</div></div>
+        <div class="study-table-row"><div>Section</div><div>1 sq mi = 640 acres</div></div>
+        <div class="study-table-row"><div>Quarter section</div><div>160 acres</div></div>
+        <div class="study-table-row"><div>Quarter-quarter</div><div>40 acres</div></div>
+        <div class="study-table-row"><div>Acre</div><div>43,560 sq ft (MEMORIZE)</div></div>
+      </div>
+      <p><b>Lot and block</b> — refers to a recorded plat map. Used in subdivisions.</p>
+      <p><b>Survey</b> = identifies physical boundaries, encroachments, easements, and exact dimensions of a parcel. Discovered by hiring a licensed surveyor.</p>
+
+      <h4>1.7 Government Powers — PETE</h4>
+      <div class="study-callout hook">
+        <div class="study-callout-label">MEMORY HOOK</div>
+        <b>P</b>olice power (NO compensation) · <b>E</b>minent domain (WITH compensation) · <b>T</b>axation · <b>E</b>scheat (state takes when intestate + no heirs)
+      </div>
+      <p><b>Police power</b> — regulate for public health/safety/welfare. Zoning, building codes. No compensation owed, even if value drops.</p>
+      <p><b>Eminent domain</b> — physically TAKE property for public use. Just compensation REQUIRED (5th Amendment). Process is called <b>condemnation</b>.</p>
+      <p><b>Taxation</b> — ad valorem property taxes. Unpaid taxes = super-priority lien.</p>
+      <p><b>Escheat</b> — property to state when owner dies intestate with no locatable heirs.</p>
+
+      <h4>1.8 Zoning Tools</h4>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>USE variance / SPECIAL use / AREA variance</b><br>
+        • <b>USE variance</b>: Zoning PROHIBITS your intended use. Must prove unnecessary hardship. (Hardest to obtain.)<br>
+        • <b>SPECIAL use permit (conditional use)</b>: Zoning ALLOWS the use, but with conditions specified in the code (parking, hours, etc.). Common for churches, daycares in residential zones.<br>
+        • <b>AREA variance</b>: Use is allowed, but a dimensional rule (setback, height) is in the way. Standard is practical difficulty (lower than hardship).<br><br>
+        <b>USE = zoning says NO. SPECIAL = YES with conditions. AREA = same use, bent rule.</b>
+      </div>
+      <p><b>Nonconforming use (grandfathered)</b> — legal under prior zoning, continues after rezoning. Typically cannot be: (1) expanded, (2) rebuilt after major destruction, (3) resumed after extended abandonment.</p>
+      <p><b>Spot zoning</b> — rezoning a single parcel inconsistently with surroundings. Generally illegal.</p>
+
+      <h4>1.9 Private Land Use — Covenants, Easements, Encroachments</h4>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>Restrictive covenants can be ANY duration the drafter chooses</b> — permanent, time-limited, or auto-renewing. Enforced by other owners (HOA), not by government. <b>More restrictive of zoning or CC&Rs controls.</b>
+      </div>
+      <p><b>Easement appurtenant</b> — benefits one parcel (dominant) at expense of another (servient). Runs with the land.</p>
+      <p><b>Easement in gross</b> — benefits a person or entity, not a parcel. Utility easements are the classic example.</p>
+      <p><b>Easement by necessity</b> — landlocked parcel; access granted by law.</p>
+      <p><b>Easement by prescription</b> — acquired by continuous, open, notorious, hostile use for the statutory period (USE right only).</p>
+      <p><b>License</b> — revocable permission to use land (concert ticket).</p>
+      <p><b>Encroachment</b> — physical intrusion across a boundary (neighbor's shed, fence). Discovered by survey. Can cloud title.</p>
+
+      <h4>1.10 Water Rights</h4>
+      <div class="study-callout hook">
+        <div class="study-callout-label">MEMORY HOOK</div>
+        <b>R</b>iparian = <b>R</b>iver/stream (flowing). <b>L</b>ittoral = <b>L</b>ake/ocean (standing). <b>Avulsion = Abrupt</b> loss. <b>Erosion = Eternal</b> slow grind.
+      </div>
+      <p><b>Accretion</b> — GRADUAL addition of soil (deposit = alluvion). Owner gains.</p>
+      <p><b>Reliction</b> — GRADUAL water recession exposing land. Owner gains.</p>
+      <p><b>Erosion</b> — GRADUAL wearing away by water/wind. Owner loses.</p>
+      <p><b>Avulsion</b> — SUDDEN violent loss (flood, earthquake). Original boundaries typically preserved in law.</p>
+      <p><b>Prior appropriation</b> — western states. First beneficial use creates rights. Maintained by continued use.</p>
+    `
+  },
+  {
+    num: "II",
+    title: "Forms of Ownership, Transfer, and Recording of Title",
+    weight: "9 items",
+    body: `
+      <h4>2.1 Forms of Co-Ownership</h4>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Form</div><div>Key features</div></div>
+        <div class="study-table-row"><div>Tenancy in common (TIC)</div><div>Default. No survivorship. Each tenant's interest passes by will/intestacy. Can sell independently.</div></div>
+        <div class="study-table-row"><div>Joint tenancy</div><div>Right of survivorship. Requires PITT unities. Severable by deed → converts to TIC.</div></div>
+        <div class="study-table-row"><div>Tenancy by entirety (TBE)</div><div>Married couples only. 5th unity (person). Both must consent to convey. Terminated by divorce or death.</div></div>
+        <div class="study-table-row"><div>Community property</div><div>9 states, NOT PA. Property acquired during marriage owned 50/50.</div></div>
+      </div>
+      <div class="study-callout hook">
+        <div class="study-callout-label">MEMORY HOOK</div>
+        <b>PITT</b> = Possession, Interest, Time, Title. All four required for joint tenancy. TBE adds 5th unity (person/marriage).
+      </div>
+
+      <h4>2.2 Business Ownership of Real Estate</h4>
+      <p><b>Sole proprietorship</b> — unlimited personal liability.</p>
+      <p><b>General partnership</b> — joint and several liability.</p>
+      <p><b>Limited partnership (LP)</b> — general partners manage with unlimited liability; limited partners have liability capped at investment.</p>
+      <p><b>LLC</b> — partnership tax flexibility + corporate liability protection.</p>
+      <p><b>Corporation</b> — separate entity; shareholders insulated.</p>
+      <p><b>Condominium</b> — fee simple ownership of unit + undivided % of common elements.</p>
+      <p><b>Cooperative</b> — owns shares in a corporation that owns the building. Receives proprietary lease. Owns personal property, not real property.</p>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>Condo = single-family stacked.</b> Each unit has its own deed, mortgage, and tax bill. Classification is by OWNERSHIP STRUCTURE, not architecture. Apartment building owned by one entity = multi-family.
+      </div>
+
+      <h4>2.3 Deeds — Hierarchy of Protection</h4>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Deed type</div><div>Protection</div></div>
+        <div class="study-table-row"><div>General warranty</div><div>MAXIMUM. Warrants against all defects including pre-grantor.</div></div>
+        <div class="study-table-row"><div>Special warranty</div><div>Only defects during grantor's ownership.</div></div>
+        <div class="study-table-row"><div>Bargain and sale</div><div>Implies title but no express warranties.</div></div>
+        <div class="study-table-row"><div>Quitclaim</div><div>NO warranties. Conveys whatever interest grantor has — could be nothing.</div></div>
+      </div>
+
+      <h4>2.4 Elements of a Valid Deed</h4>
+      <ul>
+        <li>In writing (Statute of Frauds)</li>
+        <li>Competent grantor with legal capacity</li>
+        <li>Identifiable grantee</li>
+        <li>Words of conveyance (granting clause)</li>
+        <li>Adequate legal description</li>
+        <li>Signature of grantor</li>
+        <li><b>Delivery to AND acceptance by grantee during grantor's lifetime</b></li>
+      </ul>
+      <p><b>Notarization is NOT required for validity.</b> It's required for RECORDING. Deed is valid between parties without recording.</p>
+
+      <h4>2.5 Recording — Constructive Notice</h4>
+      <p>Recording provides <b>constructive notice to the world</b>. Deed is valid without recording (between parties) but unrecorded deeds risk loss to later bona fide purchasers. Recording also establishes lien priority.</p>
+
+      <h4>2.6 Methods of Transferring Title</h4>
+      <ul>
+        <li><b>Sale</b> — voluntary, for consideration</li>
+        <li><b>Gift</b> — voluntary, without consideration</li>
+        <li><b>Devise</b> — real property in a will (recipient = devisee)</li>
+        <li><b>Bequest/legacy</b> — personal property in a will (recipient = legatee)</li>
+        <li><b>Descent</b> — intestate succession (no will)</li>
+        <li><b>Operation of law</b> — joint tenancy survivorship, TBE survivorship</li>
+        <li><b>Adverse possession</b> — continuous, open, notorious, hostile, exclusive possession for statutory period</li>
+        <li><b>Eminent domain</b> — involuntary, with compensation</li>
+        <li><b>Escheat</b> — to state, no heirs</li>
+        <li><b>Foreclosure / tax sale</b> — involuntary, default-triggered</li>
+      </ul>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>Operation of law BEATS the will.</b> If a deceased owner's will says "my house to my daughter" but the house was held in joint tenancy with their spouse, the SPOUSE takes by survivorship. Will provision is ineffective for that property.
+      </div>
+
+      <h4>2.7 Title Insurance & Marketable Title</h4>
+      <p><b>Title search</b> → identifies defects/liens. <b>Title abstract/commitment</b> = the result.</p>
+      <p><b>Marketable title</b> = free from significant defects.</p>
+      <p><b>Owner's policy</b> — protects owner up to purchase price for as long as held. Often optional.</p>
+      <p><b>Lender's policy</b> — protects lender up to loan balance. Required by lender. Paid by buyer.</p>
+
+      <h4>2.8 Lien Priority</h4>
+      <p>Generally first to record = first to be paid. BUT:</p>
+      <ul>
+        <li><b>Property tax liens</b> — super-priority, ahead of all others</li>
+        <li><b>Mechanic's liens</b> — in some states, priority dates back to start of work</li>
+      </ul>
+
+      <h4>2.9 Probate Terminology</h4>
+      <ul>
+        <li><b>Testate</b> — died with a valid will</li>
+        <li><b>Intestate</b> — died without a will</li>
+        <li><b>Executor</b> — named in will to administer estate</li>
+        <li><b>Administrator</b> — court-appointed for intestate estate</li>
+        <li><b>Devisee</b> — receives real property by will</li>
+        <li><b>Legatee</b> — receives personal property by will</li>
+        <li><b>Codicil</b> — amendment to a will</li>
+      </ul>
+    `
+  },
+  {
+    num: "III",
+    title: "Property Value and Appraisal",
+    weight: "11 items",
+    body: `
+      <h4>3.1 Concepts of Value</h4>
+      <p><b>Market value</b> — most probable price under fair conditions: willing buyer, willing seller, both informed, no duress, reasonable market exposure.</p>
+      <p><b>Market price</b> — actual sale price. May differ from value.</p>
+      <p><b>Cost</b> — expense to reproduce/replace improvements. Different from value.</p>
+      <p><b>Assessed value</b> — for tax purposes. Often a percentage of market value.</p>
+      <p><b>Investment value</b> — value to a specific investor. Subjective.</p>
+
+      <h4>3.2 DUST — Four Characteristics of Value</h4>
+      <div class="study-callout hook">
+        <div class="study-callout-label">MEMORY HOOK</div>
+        <b>DUST</b> creates value: <b>D</b>emand, <b>U</b>tility, <b>S</b>carcity, <b>T</b>ransferability. All four required.
+      </div>
+
+      <h4>3.3 Principles of Value</h4>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Principle</div><div>Meaning</div></div>
+        <div class="study-table-row"><div>Highest & best use</div><div>Legal, possible, feasible, maximally productive use</div></div>
+        <div class="study-table-row"><div>Substitution</div><div>Won't pay more than cost of equally desirable substitute. Foundation of all 3 approaches.</div></div>
+        <div class="study-table-row"><div>Supply & demand</div><div>Values rise/fall with market dynamics</div></div>
+        <div class="study-table-row"><div>Conformity</div><div>Max value when conforms with neighborhood</div></div>
+        <div class="study-table-row"><div>Progression</div><div>Lesser property gains value among better ones</div></div>
+        <div class="study-table-row"><div>Regression</div><div>Better property loses value among lesser ones</div></div>
+        <div class="study-table-row"><div>Contribution</div><div>Improvement's added value ≠ its cost</div></div>
+        <div class="study-table-row"><div>Anticipation</div><div>Value created by anticipated future benefits</div></div>
+        <div class="study-table-row"><div>Plottage / Assemblage</div><div>Combining parcels may exceed sum of parts</div></div>
+      </div>
+
+      <h4>3.4 Three Approaches to Appraisal</h4>
+      <p><b>Sales comparison (market data) approach</b> — most for residential. Identify comps, adjust their prices for differences from subject.</p>
+      <div class="study-callout hook">
+        <div class="study-callout-label">MEMORY HOOK</div>
+        <b>Adjust the COMP, not the subject.</b> Comp Inferior → ADD. Comp Superior → SUBTRACT. (Imagine what the comp would have sold for to match the subject.)
+      </div>
+
+      <p><b>Cost approach</b> — for special-purpose properties (churches, schools, gov) and new construction.</p>
+      <p><b>Formula:</b> Value = Reproduction/Replacement Cost − Depreciation + Land Value</p>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Depreciation type</div><div>Curable?</div></div>
+        <div class="study-table-row"><div>Physical deterioration</div><div>Curable if cost-effective</div></div>
+        <div class="study-table-row"><div>Functional obsolescence</div><div>Sometimes (outdated design)</div></div>
+        <div class="study-table-row"><div>External (economic) obsolescence</div><div>INCURABLE (outside property)</div></div>
+      </div>
+
+      <p><b>Income approach</b> — for income-producing property.</p>
+      <div class="study-callout hook">
+        <div class="study-callout-label">MEMORY HOOK</div>
+        <b>Value = NOI ÷ Cap Rate.</b> DIVIDE. NOI is BEFORE debt service.<br><br>
+        Inverse: Cap Rate = NOI ÷ Value.<br>
+        Inverse: NOI = Value × Cap Rate.
+      </div>
+      <p><b>NOI = Effective Gross Income − Operating Expenses.</b><br>
+      EGI = Gross Scheduled Income − Vacancy + Other Income.<br>
+      NOI does NOT subtract: debt service, depreciation, income taxes.</p>
+
+      <p><b>Gross Rent Multiplier (GRM)</b> — for small residential rentals.<br>
+      GRM = Sale Price ÷ Monthly Rent. Value = GRM × Subject's Monthly Rent.</p>
+
+      <h4>3.5 CMA vs. BPO vs. Appraisal</h4>
+      <p><b>CMA (Comparative Market Analysis)</b> — licensee's analysis to set listing price. NOT an appraisal. PA requires CMAs to state they are not appraisals.</p>
+      <p><b>BPO (Broker's Price Opinion)</b> — more formal, often for lenders. Federal restrictions for federally related transactions.</p>
+      <p><b>Appraisal</b> — only by licensed/certified appraiser following USPAP.</p>
+
+      <h4>3.6 Forces Affecting Value</h4>
+      <p>Four forces (SEGE/PEGS):</p>
+      <ul>
+        <li><b>S</b>ocial — population, family size, lifestyle</li>
+        <li><b>E</b>conomic — employment, rates, supply/demand</li>
+        <li><b>G</b>overnmental — zoning, taxes, regulations</li>
+        <li><b>E</b>nvironmental — climate, topography, amenities, hazards</li>
+      </ul>
+    `
+  },
+  {
+    num: "IV",
+    title: "Real Estate Contracts and Agency",
+    weight: "16 items (LARGEST)",
+    body: `
+      <h4>4.1 Essential Elements of a Valid Contract</h4>
+      <ul>
+        <li><b>Offer and acceptance</b> (mutual assent)</li>
+        <li><b>Consideration</b> — something of legal value exchanged</li>
+        <li><b>Legal purpose</b></li>
+        <li><b>Competent parties</b> — legal capacity</li>
+        <li><b>Genuine assent / consent</b> — freely entered, no fraud/duress</li>
+      </ul>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA — TESTED FREQUENTLY</div>
+        <b>Fraud kills CONSENT, not consideration.</b> When fraud, misrepresentation, duress, or undue influence is involved, the compromised element is <b>genuine assent (consent)</b>. Consideration was still exchanged — what broke is the mental agreement. Contract becomes voidable by the injured party.
+      </div>
+      <p><b>Notarization is NOT required for contract validity.</b> Required for recording deeds.</p>
+
+      <h4>4.2 Statute of Frauds</h4>
+      <p>Real estate contracts must be in writing and signed to be enforceable. Oral real estate contracts are <b>unenforceable</b> (not void — could be honored voluntarily, but courts won't compel).</p>
+
+      <h4>4.3 Contract Classifications</h4>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Term</div><div>Meaning</div></div>
+        <div class="study-table-row"><div>Valid</div><div>All elements present. Enforceable.</div></div>
+        <div class="study-table-row"><div>Void</div><div>No legal effect from the start.</div></div>
+        <div class="study-table-row"><div>Voidable</div><div>Can be canceled by one party (minor, fraud, duress).</div></div>
+        <div class="study-table-row"><div>Unenforceable</div><div>Valid but courts won't compel (Statute of Frauds, expired SOL).</div></div>
+        <div class="study-table-row"><div>Bilateral</div><div>Both parties promise (sales contracts).</div></div>
+        <div class="study-table-row"><div>Unilateral</div><div>Only one party promises (option to purchase).</div></div>
+        <div class="study-table-row"><div>Executory</div><div>Signed but performance incomplete.</div></div>
+        <div class="study-table-row"><div>Executed</div><div>Fully performed (after closing).</div></div>
+        <div class="study-table-row"><div>Express</div><div>Terms stated explicitly.</div></div>
+        <div class="study-table-row"><div>Implied</div><div>Terms inferred from conduct.</div></div>
+      </div>
+
+      <h4>4.4 Common Real Estate Contracts</h4>
+      <p><b>Listing agreement</b> — seller + broker. Types:</p>
+      <ul>
+        <li><b>Open</b> — multiple brokers, only producing broker paid</li>
+        <li><b>Exclusive agency</b> — one broker, but seller can sell themselves commission-free</li>
+        <li><b>Exclusive right-to-sell</b> — one broker paid regardless of who sells. Most common.</li>
+        <li><b>Net listing</b> — broker keeps anything over a set net. Conflict of interest, illegal in many states.</li>
+      </ul>
+      <p><b>Buyer agency agreement</b>, <b>sales contract</b>, <b>lease</b>, <b>option</b>, <b>installment contract (land contract)</b>, <b>assignment</b>, <b>novation</b>.</p>
+
+      <h4>4.5 Termination of an Offer</h4>
+      <ul>
+        <li>Rejection</li>
+        <li>Counter-offer (= rejection + new offer)</li>
+        <li>Revocation before acceptance</li>
+        <li>Lapse of time</li>
+        <li>Death/incapacity before acceptance</li>
+        <li>Destruction of subject matter</li>
+        <li>Subsequent illegality</li>
+      </ul>
+
+      <h4>4.6 Breach and Remedies</h4>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Remedy</div><div>Use</div></div>
+        <div class="study-table-row"><div>Specific performance</div><div>Compel performance. Common in real estate — each parcel is unique.</div></div>
+        <div class="study-table-row"><div>Compensatory damages</div><div>Money to make whole.</div></div>
+        <div class="study-table-row"><div>Liquidated damages</div><div>Pre-agreed (often earnest money).</div></div>
+        <div class="study-table-row"><div>Rescission</div><div>Cancel and restore pre-contract state.</div></div>
+        <div class="study-table-row"><div>Reformation</div><div>Court rewrites contract to true intent.</div></div>
+      </div>
+      <p><b>Time is of the essence</b> — deadlines strictly enforced. Missing = breach.</p>
+
+      <h4>4.7 Agency Parties & Terminology</h4>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Term</div><div>Meaning</div></div>
+        <div class="study-table-row"><div>Principal</div><div>Hires the agent. Client.</div></div>
+        <div class="study-table-row"><div>Agent</div><div>Acts on principal's behalf.</div></div>
+        <div class="study-table-row"><div>Client</div><div>Party the agent REPRESENTS. Gets fiduciary duties.</div></div>
+        <div class="study-table-row"><div>Customer</div><div>Worked with but NOT represented. Gets honesty + fair dealing only.</div></div>
+        <div class="study-table-row"><div>Dual agent</div><div>Represents both sides. Requires WRITTEN consent from both.</div></div>
+        <div class="study-table-row"><div>Designated agent</div><div>Separate salespersons of one brokerage represent each side.</div></div>
+        <div class="study-table-row"><div>Transaction broker</div><div>Represents neither. Facilitator role.</div></div>
+      </div>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>Licensees REPRESENT clients, not customers.</b> The word "represent" has a precise legal meaning. If "customer" or "client or customer" is offered as the answer to "who does a licensee represent," eliminate it. Representation requires an agency agreement.
+      </div>
+
+      <h4>4.8 Creation of Agency</h4>
+      <ul>
+        <li><b>Express</b> — written or oral agreement</li>
+        <li><b>Implied</b> — created by conduct</li>
+        <li><b>Ostensible/apparent</b> — third parties reasonably believe agency exists</li>
+        <li><b>Ratification</b> — principal accepts benefits retroactively</li>
+        <li><b>Estoppel</b> — reliance on representation of authority</li>
+      </ul>
+
+      <h4>4.9 Fiduciary Duties — OLDCAR</h4>
+      <div class="study-callout hook">
+        <div class="study-callout-label">MEMORY HOOK</div>
+        <b>OLDCAR</b>: <b>O</b>bedience to lawful instructions · <b>L</b>oyalty (client first) · <b>D</b>isclosure of material facts · <b>C</b>onfidentiality (survives termination) · <b>A</b>ccounting for funds · <b>R</b>easonable care and diligence
+      </div>
+      <p>To <b>CUSTOMER</b>: honesty + fair dealing only. NO fiduciary duties.</p>
+
+      <h4>4.10 Termination of Agency</h4>
+      <ul>
+        <li>Performance (purpose fulfilled)</li>
+        <li>Expiration of term</li>
+        <li>Mutual agreement</li>
+        <li>Revocation by principal</li>
+        <li>Renunciation by agent</li>
+        <li>Operation of law (death, incapacity, bankruptcy, destruction, illegality)</li>
+        <li>Mutual breach</li>
+      </ul>
+      <p><b>Confidentiality survives termination.</b> It is NEVER a method of termination.</p>
+    `
+  },
+  {
+    num: "V",
+    title: "Real Estate Practice",
+    weight: "10 items",
+    body: `
+      <h4>5.1 Federal Fair Housing — 7 Protected Classes</h4>
+      <div class="study-callout verified">
+        <div class="study-callout-label">VERIFIED FACT</div>
+        <b>The 7 federally protected classes:</b><br>
+        1. Race (1866 + 1968)<br>
+        2. Color (1968)<br>
+        3. Religion (1968)<br>
+        4. National Origin (1968)<br>
+        5. Sex (1974 — incl. gender identity/orientation per Bostock 2020)<br>
+        6. Familial Status (1988)<br>
+        7. Disability/Handicap (1988)
+      </div>
+      <p><b>NOT federally protected:</b> age, marital status, source of income, veteran status, political affiliation. (States/localities may add these.)</p>
+
+      <h4>5.2 Federal Exemptions</h4>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Exemption</div><div>Limits</div></div>
+        <div class="study-table-row"><div>Mrs. Murphy</div><div>Owner-occupied 1-4 unit buildings. Cannot advertise. Cannot discriminate by RACE.</div></div>
+        <div class="study-table-row"><div>Single-family by owner</div><div>Max 3 homes at a time, no broker, no discriminatory ads, no race discrimination.</div></div>
+        <div class="study-table-row"><div>Religious orgs</div><div>Members of same religion, non-commercial use, religion can't discriminate by race/color/origin.</div></div>
+        <div class="study-table-row"><div>Housing for older persons</div><div>55+ communities meeting HUD rules. Can exclude families with children.</div></div>
+      </div>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>Discriminatory advertising is NEVER exempt.</b> Even when the underlying conduct may be exempt (Mrs. Murphy, sale-by-owner), the ADS are always illegal.<br><br>
+        <b>RACE is NEVER an allowed basis.</b> 1866 Civil Rights Act has no exemptions for race. Ever.<br><br>
+        <b>Mrs. Murphy can discriminate, but Mrs. Murphy CANNOT advertise.</b>
+      </div>
+
+      <h4>5.3 Prohibited Practices</h4>
+      <ul>
+        <li><b>Steering</b> — directing PEOPLE based on protected class</li>
+        <li><b>Blockbusting (panic peddling)</b> — scaring owners to sell by claiming protected class is moving in</li>
+        <li><b>Redlining</b> — denying loans/services in AREAS based on demographics</li>
+        <li><b>Discriminatory advertising</b> — NEVER exempt</li>
+        <li><b>Refusing to deal / falsifying availability</b></li>
+        <li><b>Different terms or services</b></li>
+        <li><b>Coercion, intimidation, retaliation</b></li>
+      </ul>
+
+      <h4>5.4 Americans with Disabilities Act (ADA)</h4>
+      <p>Enacted July 26, 1990. Five titles:</p>
+      <ul>
+        <li><b>Title I</b> — Employment (15+ employees)</li>
+        <li><b>Title II</b> — State/local government services</li>
+        <li><b>Title III</b> — <b>Public accommodations & commercial facilities</b> (real estate brokerages open to public must comply)</li>
+        <li><b>Title IV</b> — Telecommunications</li>
+        <li><b>Title V</b> — Misc, anti-retaliation</li>
+      </ul>
+      <p><b>Private residences are NOT covered by ADA.</b> They're covered by Fair Housing Act's disability provisions (reasonable accommodation, reasonable modification, accessible design for multifamily).</p>
+
+      <h4>5.5 Antitrust</h4>
+      <p>Sherman Antitrust Act of 1890. Per-se illegal in real estate:</p>
+      <ul>
+        <li><b>Price fixing</b> — brokers agreeing on commission rates</li>
+        <li><b>Market allocation</b> — dividing territories or clients</li>
+        <li><b>Group boycotting</b> — refusing to cooperate with another broker</li>
+        <li><b>Tie-in arrangements</b> — conditioning one service on another</li>
+      </ul>
+      <p>Penalties: criminal fines, treble damages, possible imprisonment. Each brokerage must independently set its own rates.</p>
+
+      <h4>5.6 Property Management</h4>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>Parties to a property management agreement: OWNER + MANAGER only.</b> Tenants are NOT parties — they have a separate contract (the lease) with the owner. Manager's fiduciary duties run to the OWNER.
+      </div>
+      <p>Manager's duties: set rents, maintain occupancy, collect rents, hold security deposits in trust, maintain property, pay expenses, report financials, comply with landlord-tenant + fair housing laws.</p>
+
+      <h4>5.7 Lease Types by Rent Structure</h4>
+      <ul>
+        <li><b>Gross lease</b> — tenant pays fixed rent; landlord pays all operating expenses. Common in residential.</li>
+        <li><b>Net lease</b> — tenant pays base + some opex. Single net (taxes), double net (taxes + insurance), <b>triple net (NNN)</b> (taxes + insurance + maintenance).</li>
+        <li><b>Percentage lease</b> — base + % of sales. Common in retail.</li>
+        <li><b>Graduated lease</b> — increases at intervals.</li>
+        <li><b>Index lease</b> — adjusts to an index (CPI).</li>
+        <li><b>Ground lease</b> — long-term lease of land only (50-99 yrs). Tenant constructs/owns improvements.</li>
+      </ul>
+
+      <h4>5.8 Security Deposits</h4>
+      <p>Must be held in TRUST, separate from operating funds. State law sets max amount (typically 1-3 months rent), return timing (often 14-30 days), and deductions (unpaid rent + damages beyond normal wear, not normal wear).</p>
+      <p><b>Self-help evictions are illegal</b> — changing locks, removing belongings, shutting utilities. Must follow legal process.</p>
+    `
+  },
+  {
+    num: "VI",
+    title: "Property Disclosures and Environmental Issues",
+    weight: "9 items",
+    body: `
+      <h4>6.1 Seller Property Disclosure</h4>
+      <p>Sellers must disclose known material defects BEFORE buyer is obligated. <b>"Material defect"</b> = condition with significant adverse effect on value, impairs health/safety, or shortens normal life of property.</p>
+      <p>Form covers: roof, structural, electrical, plumbing, HVAC, water/sewer/septic, appliances, hazards (asbestos, lead, mold, radon), boundary disputes, easements, zoning violations, litigation.</p>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>"As-is" addresses REPAIRS, not disclosure.</b> A seller cannot use "as-is" to conceal known defects. Failure to disclose known material defects = fraud by omission, regardless of "as-is" language. Buyer can sue for damages or rescission even after closing.
+      </div>
+
+      <h4>6.2 Federal Lead-Based Paint Disclosure</h4>
+      <div class="study-callout verified">
+        <div class="study-callout-label">VERIFIED — EPA 40 CFR Part 745 Subpart F</div>
+        Residential Lead-Based Paint Hazard Reduction Act of 1992, Section 1018.<br><br>
+        <b>Applies to housing built BEFORE 1978.</b><br>
+        Seller/lessor must:<br>
+        • Disclose any known lead-based paint and hazards<br>
+        • Provide EPA pamphlet "Protect Your Family from Lead in Your Home"<br>
+        • Provide records concerning lead-based paint<br>
+        • Give buyer <b>10-day inspection window</b> (parties may modify in writing)<br>
+        • Include Lead Warning Statement in contract<br>
+        • <b>Keep signed disclosure for 3 years</b><br><br>
+        Exempt: housing built 1978+, zero-bedroom units, elderly/disabled housing (unless child under 6).
+      </div>
+
+      <h4>6.3 CLUE Reports</h4>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>Only the property OWNER can request a CLUE report.</b><br><br>
+        <b>CLUE</b> = Comprehensive Loss Underwriting Exchange. LexisNexis database, 7 years of insurance claims. Used by insurers in underwriting.<br><br>
+        A buyer concerned about hidden issues CANNOT request the seller's CLUE directly. Buyer must ask SELLER to obtain and share. Seller gets one free copy annually.
+      </div>
+
+      <h4>6.4 Environmental Hazards</h4>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Hazard</div><div>Key facts</div></div>
+        <div class="study-table-row"><div>Asbestos</div><div>Mineral fiber. Dangerous airborne. Certified abatement or encapsulation.</div></div>
+        <div class="study-table-row"><div>Lead paint</div><div>Banned 1978. Federal disclosure for pre-1978.</div></div>
+        <div class="study-table-row"><div>Radon</div><div>Naturally occurring radioactive gas from uranium decay. 2nd leading cause of lung cancer. EPA action: 4 pCi/L.</div></div>
+        <div class="study-table-row"><div>Mold</div><div>Various fungi. No federal regulation. Many states require disclosure.</div></div>
+        <div class="study-table-row"><div>USTs</div><div>Underground storage tanks. Federal EPA + state rules. PA: 110+ gal underground regulated.</div></div>
+        <div class="study-table-row"><div>PCBs</div><div>Industrial chemicals, banned 1979. Old transformers.</div></div>
+        <div class="study-table-row"><div>Brownfields</div><div>Previously developed property with potential contamination. EPA Brownfields Program offers grants + liability protection.</div></div>
+        <div class="study-table-row"><div>Wetlands</div><div>Clean Water Act. U.S. Army Corps of Engineers permits.</div></div>
+        <div class="study-table-row"><div>Floodplains</div><div>FEMA Special Flood Hazard Areas. Federally backed mortgages REQUIRE flood insurance.</div></div>
+      </div>
+
+      <h4>6.5 CERCLA (Superfund)</h4>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA — TESTED FREQUENTLY</div>
+        <b>CERCLA liability is STRICT, JOINT, and SEVERAL.</b><br><br>
+        • <b>Strict</b> — no negligence required<br>
+        • <b>Joint and several</b> — any one party can be liable for the FULL cleanup<br>
+        • <b>Current AND former owners</b> can be held liable<br><br>
+        <b>Innocent landowner defense</b> requires PROPER DUE DILIGENCE — typically a Phase I ESA done BEFORE purchase. If Phase I identifies a "recognized environmental condition" (REC), buyer must investigate further (Phase II) to maintain the defense. Ignoring known concerns = no innocent landowner status.
+      </div>
+      <p><b>SARA</b> (Superfund Amendments and Reauthorization Act of 1986) created the innocent landowner defense framework.</p>
+
+      <h4>6.6 Environmental Site Assessments</h4>
+      <ul>
+        <li><b>Phase I ESA</b> — records review, site visit, interviews. NO sampling. Identifies "recognized environmental conditions" (RECs).</li>
+        <li><b>Phase II ESA</b> — sampling and testing of soil, groundwater, building materials.</li>
+        <li><b>Phase III ESA</b> — remediation and cleanup.</li>
+      </ul>
+
+      <h4>6.7 Stigmatized Property</h4>
+      <p>Property associated with events that don't affect physical condition but affect desirability (murder, suicide, haunting, prior HIV+ occupant). <b>Disclosure varies by state</b> — some require, some prohibit, some take a middle position (disclose if asked).</p>
+    `
+  },
+  {
+    num: "VII",
+    title: "Financing and Settlement",
+    weight: "7 items",
+    body: `
+      <h4>7.1 Mortgage & Note Basics</h4>
+      <p>Two documents: <b>promissory note</b> (promise to repay) + <b>mortgage or deed of trust</b> (security instrument).</p>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Term</div><div>Meaning</div></div>
+        <div class="study-table-row"><div>Mortgagor</div><div>Borrower (mortga-GOR = giver)</div></div>
+        <div class="study-table-row"><div>Mortgagee</div><div>Lender (mortga-GEE = receiver)</div></div>
+        <div class="study-table-row"><div>Lien theory</div><div>Borrower has title; lender has lien (PA is lien theory)</div></div>
+        <div class="study-table-row"><div>Title theory</div><div>Lender holds title until paid; borrower has equitable title</div></div>
+        <div class="study-table-row"><div>Deed of trust</div><div>3 parties: Trustor (borrower), Trustee (third party), Beneficiary (lender). Often allows non-judicial foreclosure.</div></div>
+      </div>
+
+      <h4>7.2 Mortgage Clauses</h4>
+      <ul>
+        <li><b>Acceleration</b> — on default, full balance due immediately. Makes foreclosure practical.</li>
+        <li><b>Due-on-sale (alienation)</b> — full balance due on TRANSFER of property. Prevents loan assumption.</li>
+        <li><b>Prepayment penalty</b> — fee for early payoff. Largely banned for qualified mortgages under Dodd-Frank.</li>
+        <li><b>Defeasance</b> — releases lien when loan paid in full.</li>
+        <li><b>Subordination</b> — allows new lien to become senior (common with construction).</li>
+        <li><b>Assumption</b> — buyer takes over seller's mortgage. Most modern loans prohibit via due-on-sale. FHA and VA loans are typically assumable.</li>
+      </ul>
+
+      <h4>7.3 Loan Types</h4>
+      <div class="study-table">
+        <div class="study-table-row head"><div>Loan</div><div>Key features</div></div>
+        <div class="study-table-row"><div>Conventional</div><div>Not government-backed. Fannie/Freddie conforming or jumbo. PMI if LTV > 80%; auto-cancels at 78%.</div></div>
+        <div class="study-table-row"><div>FHA</div><div>Federal Housing Admin. 3.5% min down (580+ credit). MIP (upfront + annual). Assumable.</div></div>
+        <div class="study-table-row"><div>VA</div><div>VA-guaranteed for vets/active duty/eligible spouses. 0% down. NO PMI. Funding fee (waived for service-connected disability). Assumable.</div></div>
+        <div class="study-table-row"><div>USDA</div><div>USDA Rural Development. 0% down. Both rural HOUSING + farms. Income limits. 33-38 year terms.</div></div>
+        <div class="study-table-row"><div>Jumbo</div><div>Exceeds conforming limits. Higher rates, stricter underwriting.</div></div>
+      </div>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>USDA = rural housing + farms.</b> Not just farms. "Agriculture" name misleads. Major source of 0%-down home loans in qualifying rural areas. Loan terms commonly 33-38 years.
+      </div>
+
+      <h4>7.4 Primary vs. Secondary Mortgage Market</h4>
+      <ul>
+        <li><b>Primary market</b> — borrowers GET loans directly from lenders (banks, credit unions, mortgage companies).</li>
+        <li><b>Secondary market</b> — those loans are SOLD to investors (Fannie Mae, Freddie Mac, Ginnie Mae). Provides liquidity to lenders.</li>
+      </ul>
+
+      <h4>7.5 RESPA (Real Estate Settlement Procedures Act, 1974)</h4>
+      <div class="study-callout verified">
+        <div class="study-callout-label">VERIFIED — 12 USC §2607</div>
+        Applies to federally related mortgages on 1-4 family residential.<br><br>
+        <b>Section 8(a)</b> — prohibits kickbacks for referrals of settlement service business.<br>
+        <b>Section 8(b)</b> — prohibits unearned fee splits.<br>
+        <b>Section 8(c)</b> — exceptions including cooperative commission splits between licensees.<br><br>
+        RESPA also requires lender to provide CFPB's "Your Home Loan Toolkit" within 3 business days of application.
+      </div>
+
+      <h4>7.6 TRID (TILA-RESPA Integrated Disclosure)</h4>
+      <div class="study-callout verified">
+        <div class="study-callout-label">VERIFIED — 12 CFR §1026.19</div>
+        Effective October 3, 2015. Two unified disclosures replaced four older forms.<br><br>
+        <b>Loan Estimate (LE)</b>: within <b>3 business days of complete application</b>.<br>
+        <b>Closing Disclosure (CD)</b>: must be RECEIVED by consumer at least <b>3 business days BEFORE consummation</b> (closing).<br><br>
+        <b>Three changes trigger a NEW 3-day waiting period:</b><br>
+        1. APR over tolerance (0.125% for fixed, 0.25% for ARM)<br>
+        2. Loan product changes (fixed → ARM, etc.)<br>
+        3. Prepayment penalty added<br><br>
+        Address changes and minor adjustments do NOT trigger a new wait.<br><br>
+        Does NOT apply to: HELOCs, reverse mortgages, mobile homes not attached to land.
+      </div>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>LE early, CD closing — both 3-day rules.</b><br>
+        • LE = within 3 days of APPLICATION (gives buyer time to shop)<br>
+        • CD = at least 3 days BEFORE CLOSING (gives buyer time to review final terms)
+      </div>
+
+      <h4>7.7 Right of Rescission</h4>
+      <p>Federal TILA gives consumers 3-business-day right to cancel <b>refinances and home equity loans on principal residence</b>.</p>
+      <p><b>Does NOT apply to purchase money mortgages.</b> When buying a home, no 3-day cancel.</p>
+      <p>Saturdays count; Sundays and federal holidays do not.</p>
+
+      <h4>7.8 ECOA (Equal Credit Opportunity Act)</h4>
+      <p>Prohibits credit discrimination based on: race, color, religion, national origin, sex, marital status, age (with capacity), receipt of public assistance, exercising consumer protection rights.</p>
+      <p><b>ECOA list is LONGER than Fair Housing</b> — adds marital status, age, public assistance income. Note: credit score is NOT protected (lenders may use it).</p>
+
+      <h4>7.9 Predatory Lending</h4>
+      <ul>
+        <li><b>Loan flipping</b> — repeated refis for fees, eroding equity</li>
+        <li><b>Equity stripping</b> — loans designed to foreclose, seize equity</li>
+        <li><b>Steering</b> — directing borrowers to higher-cost loans they don't qualify for</li>
+        <li><b>Reverse redlining</b> — targeting protected-class neighborhoods with predatory products</li>
+        <li><b>Hidden/junk fees, negative amortization, balloon traps</b></li>
+      </ul>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>First-time and credit-impaired buyers need APPROPRIATE financing, not high-risk loans.</b> Steering vulnerable borrowers to high-risk products is predatory.
+      </div>
+
+      <h4>7.10 Settlement (Closing)</h4>
+      <p>Closing meeting: signed deed delivered, funds disbursed, ownership transferred. In PA, attorneys or title companies typically conduct.</p>
+      <p><b>Prorations</b> divide recurring expenses based on closing date. Exam will SPECIFY 360 vs 365 day year AND whose day closing belongs to.</p>
+    `
+  },
+  {
+    num: "VIII",
+    title: "Real Estate Math Calculations",
+    weight: "7 items",
+    body: `
+      <div class="study-callout verified">
+        <div class="study-callout-label">VERIFIED — REQUIRED MEMORIZATION</div>
+        NOT provided at test center:<br>
+        • <b>1 acre = 43,560 square feet</b><br>
+        • <b>1 mile = 5,280 feet</b><br><br>
+        Derived: 1 sq mile = 640 acres = 1 section. 1 township = 36 sections.
+      </div>
+
+      <h4>8.1 Commission Calculations</h4>
+      <p><b>Commission = Sale Price × Commission Rate</b><br>
+      <b>Sale Price = Commission ÷ Commission Rate</b><br>
+      <b>Commission Rate = Commission ÷ Sale Price</b></p>
+
+      <h4>8.2 Split Commissions</h4>
+      <p>Multiple layers — work step by step:<br>
+      1. Total commission = Sale × Rate<br>
+      2. Brokerage share = Total × Brokerage's %<br>
+      3. Salesperson share = Brokerage × Salesperson's %</p>
+      <div class="study-callout hook">
+        <div class="study-callout-label">MEMORY HOOK</div>
+        ALWAYS multiply through every layer. Don't stop at brokerage share when the question asks about the salesperson. Read the split CAREFULLY — not always 50/50.
+      </div>
+
+      <h4>8.3 Net to Seller — Your Most Missed Math</h4>
+      <div class="study-callout weak">
+        <div class="study-callout-label">YOUR WEAK AREA</div>
+        <b>Sale Price = (Net + Mortgage + Other Costs) ÷ (1 − Commission Rate)</b><br><br>
+        <b>DIVIDE.</b> Never multiply.<br><br>
+        Why: Commission comes OFF the sale price. So sale price × (1 − rate) must equal what the seller needs. Solve by dividing.<br><br>
+        Common wrong answer: multiplying (Net) × (1 + commission rate). Wrong because commission is taken from the SALE, not added to the net.
+      </div>
+
+      <h4>8.4 LTV (Loan-to-Value)</h4>
+      <p><b>LTV = Loan ÷ (lower of Value or Sale Price)</b></p>
+      <p>At 80% LTV exactly, conventional loans typically don't require PMI. Above 80% → PMI required until 78%.</p>
+
+      <h4>8.5 Mill Rate & Property Tax</h4>
+      <p><b>1 mill = $1 per $1,000 of assessed value = 0.001</b><br>
+      <b>Annual Tax = (Assessed Value ÷ 1,000) × Mill Rate</b></p>
+      <p>Or: Assessed × Mill Rate × 0.001</p>
+
+      <h4>8.6 Cap Rate & NOI</h4>
+      <div class="study-callout hook">
+        <div class="study-callout-label">MEMORY HOOK</div>
+        <b>Value = NOI ÷ Cap Rate</b> (DIVIDE)<br>
+        <b>Cap Rate = NOI ÷ Value</b><br>
+        <b>NOI = Value × Cap Rate</b>
+      </div>
+      <p><b>NOI calculation:</b></p>
+      <ul>
+        <li>Start: Gross Scheduled Income</li>
+        <li>Subtract: Vacancy & collection losses</li>
+        <li>Add: Other income (laundry, parking)</li>
+        <li>= Effective Gross Income (EGI)</li>
+        <li>Subtract: Operating Expenses</li>
+        <li>= <b>NOI</b></li>
+      </ul>
+      <p><b>NOI does NOT subtract:</b> debt service (mortgage payments), depreciation, income taxes.</p>
+
+      <h4>8.7 Interest Calculations</h4>
+      <p><b>Annual Interest = Principal × Annual Rate</b><br>
+      <b>Monthly Interest = Principal × Annual Rate ÷ 12</b></p>
+      <p>First month uses FULL loan balance. Each subsequent month, interest portion drops slightly as principal pays down.</p>
+
+      <h4>8.8 Discount Points</h4>
+      <p><b>1 point = 1% of the LOAN amount</b> (NOT sale price).</p>
+      <p>Each point typically reduces rate by ~0.25%.</p>
+      <p><b>Step 1:</b> Find loan amount (often Sale × (1 − down %)).<br>
+      <b>Step 2:</b> Points × Loan × 0.01.</p>
+
+      <h4>8.9 Area Calculations</h4>
+      <p><b>Rectangle:</b> Length × Width<br>
+      <b>Triangle:</b> ½ × Base × Height<br>
+      <b>Circle:</b> π × radius²<br>
+      <b>Acreage:</b> sq ft ÷ 43,560</p>
+
+      <h4>8.10 Profit Percentage</h4>
+      <p><b>% Profit = (Sale − Cost − Improvements) ÷ Denominator × 100</b></p>
+      <p>Read carefully:<br>
+      • "On original cost" → denominator = original purchase price only<br>
+      • "On total investment" → denominator = purchase + improvements</p>
+
+      <h4>8.11 Proration at Closing</h4>
+      <p>Question will SPECIFY:</p>
+      <ul>
+        <li>360-day or 365-day year</li>
+        <li>Whether closing day belongs to seller or buyer</li>
+      </ul>
+      <p><b>Steps:</b><br>
+      1. Daily rate = Annual ÷ days in year<br>
+      2. Multiply daily rate × days assigned to each party<br>
+      3. Determine credit/debit at closing</p>
+    `
+  },
 ];
 </script>
 
@@ -1873,11 +2854,12 @@ function showView(name) {
   if (name === 'home') renderHome();
   if (name === 'hooks') renderHooks();
   if (name === 'plan') renderPlan();
+  if (name === 'study') renderStudy();
 }
 
 function renderHome() {
   // Countdown
-  const examDate = new Date('2026-06-20T08:00:00');
+  const examDate = new Date('2026-07-02T08:00:00');
   const now = new Date();
   const daysLeft = Math.max(0, Math.ceil((examDate - now) / (1000*60*60*24)));
   document.getElementById('daysLeft').textContent = daysLeft + (daysLeft === 1 ? ' day' : ' days');
@@ -2000,6 +2982,43 @@ function renderPlan() {
   }).join('');
 }
 
+function renderStudy() {
+  // Jump buttons
+  const jumpGrid = document.getElementById('studyJumpGrid');
+  jumpGrid.innerHTML = window.STUDY_GUIDE.map((s, i) =>
+    `<button class="study-jump-btn" onclick="jumpToSection(${i})">${s.num}</button>`
+  ).join('');
+
+  // Sections
+  const list = document.getElementById('studyList');
+  list.innerHTML = window.STUDY_GUIDE.map((s, i) => `
+    <div class="study-section" id="study-section-${i}">
+      <button class="study-section-header" onclick="toggleStudySection(${i})">
+        <div class="study-section-num">${s.num}</div>
+        <div class="study-section-title">${s.title}</div>
+        <div class="study-section-weight">${s.weight}</div>
+        <div class="study-section-chev">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </button>
+      <div class="study-section-body">${s.body}</div>
+    </div>
+  `).join('');
+}
+
+function toggleStudySection(i) {
+  const section = document.getElementById('study-section-' + i);
+  section.classList.toggle('expanded');
+}
+
+function jumpToSection(i) {
+  const section = document.getElementById('study-section-' + i);
+  if (!section.classList.contains('expanded')) {
+    section.classList.add('expanded');
+  }
+  section.scrollIntoView({behavior: 'smooth', block: 'start'});
+}
+
 function startSession(type) {
   const cards = buildSession(type);
   if (cards.length === 0) {
@@ -2009,7 +3028,7 @@ function startSession(type) {
   currentSession = cards;
   sessionIndex = 0;
   sessionStats = {correct: 0, wrong: 0};
-  showView('study');
+  showView('session');
   renderCard();
 }
 

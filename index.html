@@ -707,6 +707,52 @@
     opacity: 1;
   }
 
+  /* ===== RESUME BANNER ===== */
+  .resume-banner {
+    background: linear-gradient(135deg, var(--national), var(--national-deep));
+    color: white;
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    animation: slideIn 0.3s ease-out;
+  }
+  .resume-banner:active { transform: scale(0.99); }
+  .resume-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.15);
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .resume-icon svg { width: 22px; height: 22px; color: white; }
+  .resume-body { flex: 1; }
+  .resume-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.8;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .resume-text {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+  }
+  .resume-chev {
+    color: white;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+
   /* ===== STUDY GUIDE STYLES ===== */
   .study-jump {
     background: var(--bg-card);
@@ -927,6 +973,8 @@
   <div class="view active" id="view-home">
     <h1 class="greeting" id="greeting">Good morning, Casey.</h1>
     <p class="greeting-sub" id="dailySub">Daily drill for the national exam.</p>
+
+    <div id="resumeBanner" style="display:none;"></div>
 
     <div class="progress-card">
       <h3>Your progress</h3>
@@ -2871,6 +2919,30 @@ function renderHome() {
   else if (hour >= 17) greet = "Good evening";
   document.getElementById('greeting').textContent = `${greet}, Casey.`;
 
+  // Resume banner — show if a session is in progress
+  const resumeBanner = document.getElementById('resumeBanner');
+  if (currentSession && sessionIndex < currentSession.length) {
+    const remaining = currentSession.length - sessionIndex;
+    resumeBanner.style.display = 'block';
+    resumeBanner.innerHTML = `
+      <div class="resume-banner" onclick="resumeSession()">
+        <div class="resume-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+        </div>
+        <div class="resume-body">
+          <div class="resume-label">Session in progress</div>
+          <div class="resume-text">Resume — ${remaining} card${remaining === 1 ? '' : 's'} left</div>
+        </div>
+        <div class="resume-chev">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </div>
+      </div>
+    `;
+  } else {
+    resumeBanner.style.display = 'none';
+    resumeBanner.innerHTML = '';
+  }
+
   // Progress
   const seen = window.CARDS.filter(c => getCardState(c.id).seen > 0).length;
   const mastered = window.CARDS.filter(c => isMastered(c.id)).length;
@@ -3020,6 +3092,13 @@ function jumpToSection(i) {
 }
 
 function startSession(type) {
+  // If there's an active in-progress session, confirm before overwriting
+  if (currentSession && sessionIndex < currentSession.length) {
+    const remaining = currentSession.length - sessionIndex;
+    if (!confirm(`You have a session in progress (${remaining} card${remaining === 1 ? '' : 's'} left). Start a new session and abandon the current one?`)) {
+      return;
+    }
+  }
   const cards = buildSession(type);
   if (cards.length === 0) {
     toast("No cards available for this session.");
@@ -3032,7 +3111,22 @@ function startSession(type) {
   renderCard();
 }
 
+function resumeSession() {
+  if (!currentSession || sessionIndex >= currentSession.length) {
+    toast("No session to resume.");
+    return;
+  }
+  showView('session');
+  renderCard();
+}
+
 function exitStudy() {
+  // Only clear session if user explicitly confirms (or session is complete)
+  if (currentSession && sessionIndex < currentSession.length) {
+    if (!confirm(`Exit this session? You can also switch tabs and return later without losing your place.`)) {
+      return;
+    }
+  }
   currentSession = null;
   showView('home');
 }

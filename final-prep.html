@@ -1,0 +1,1278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Final Prep">
+<meta name="theme-color" content="#1e3a5f">
+<title>National Final Prep Exam — 90Q</title>
+<style>
+  :root {
+    --bg: #f5f1ea;
+    --bg-card: #ffffff;
+    --bg-elev: #faf6ef;
+    --ink: #1a2332;
+    --ink-soft: #4a5568;
+    --ink-mute: #8a95a3;
+    --line: #e5dfd4;
+    --national: #1e40af;
+    --national-deep: #1e3a8a;
+    --national-soft: #eff4ff;
+    --success: #2d6a4f;
+    --success-soft: #e8f1ec;
+    --warn: #b45309;
+    --warn-soft: #fef5e7;
+    --danger: #c2410c;
+    --danger-soft: #fff4ec;
+    --shadow: 0 2px 6px rgba(20, 30, 50, 0.06), 0 10px 30px rgba(20, 30, 50, 0.05);
+    --shadow-lg: 0 4px 12px rgba(20, 30, 50, 0.08), 0 24px 60px rgba(20, 30, 50, 0.08);
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    min-height: 100vh;
+    min-height: 100dvh;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .app { max-width: 720px; margin: 0 auto; padding: 16px 16px 100px; }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 4px 18px;
+  }
+  .logo {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .logo .accent { color: var(--national); font-style: italic; }
+  .pill {
+    background: var(--national);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ===== START SCREEN ===== */
+  .start-card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: var(--shadow);
+    margin-bottom: 16px;
+  }
+  .start-card h1 {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px;
+  }
+  .start-card .lead {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 0 0 18px;
+    line-height: 1.55;
+  }
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .info-cell {
+    background: var(--bg-elev);
+    border-radius: 10px;
+    padding: 12px;
+  }
+  .info-cell .lbl {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  .info-cell .val {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .blueprint {
+    background: var(--national-soft);
+    border-left: 3px solid var(--national);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.6;
+    margin-bottom: 18px;
+  }
+  .blueprint b { color: var(--national-deep); }
+  .weak-note {
+    background: var(--danger-soft);
+    border-left: 3px solid var(--danger);
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    color: var(--ink);
+    line-height: 1.55;
+    margin-bottom: 18px;
+  }
+  .weak-note b { color: var(--danger); }
+  .start-btn {
+    background: var(--national);
+    color: white;
+    border: 0;
+    border-radius: 12px;
+    padding: 16px;
+    font-family: inherit;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+  }
+  .start-btn:active { transform: scale(0.99); }
+
+  /* ===== EXAM SCREEN ===== */
+  .exam-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  .progress-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 2px;
+  }
+  .progress-num {
+    font-size: 13px;
+    color: var(--ink-mute);
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+  }
+  .timer {
+    font-size: 11px;
+    color: var(--ink-mute);
+    font-variant-numeric: tabular-nums;
+  }
+  .timer.warn { color: var(--warn); font-weight: 600; }
+  .timer.danger { color: #dc2626; font-weight: 700; }
+  .back-btn {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+    color: var(--ink-soft);
+    font-size: 14px;
+    padding: 8px 0;
+  }
+  .progress-bar {
+    height: 4px;
+    background: var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 18px;
+  }
+  .progress-bar > div {
+    height: 100%;
+    background: var(--national);
+    transition: width 0.3s;
+  }
+
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 24px 22px;
+    box-shadow: var(--shadow-lg);
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    background: var(--national-soft);
+    color: var(--national);
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-weight: 700;
+    margin-bottom: 14px;
+    align-self: flex-start;
+  }
+  .q-text {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.45;
+    margin-bottom: 18px;
+    color: var(--ink);
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .opt {
+    text-align: left;
+    background: var(--bg-elev);
+    border: 1.5px solid transparent;
+    border-radius: 12px;
+    padding: 14px 16px;
+    font-family: inherit;
+    font-size: 15px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s;
+    line-height: 1.4;
+  }
+  .opt:hover:not(:disabled) { border-color: var(--ink-mute); }
+  .opt:active { transform: scale(0.99); }
+  .opt:disabled { cursor: default; }
+  .opt.correct {
+    background: var(--success-soft);
+    border-color: var(--success);
+    color: var(--success);
+    font-weight: 600;
+  }
+  .opt.wrong {
+    background: #fee2e2;
+    border-color: #dc2626;
+    color: #991b1b;
+    font-weight: 600;
+  }
+  .opt-letter {
+    font-weight: 600;
+    margin-right: 8px;
+    color: var(--ink-mute);
+  }
+  .opt.correct .opt-letter, .opt.wrong .opt-letter { color: inherit; }
+
+  .next-btn {
+    background: var(--ink);
+    color: white;
+    border: 0;
+    border-radius: 12px;
+    padding: 14px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: auto;
+    width: 100%;
+  }
+  .next-btn:active { transform: scale(0.98); }
+
+  .verdict {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    animation: slideIn 0.25s ease-out;
+  }
+  .verdict.correct {
+    background: var(--success-soft);
+    color: var(--success);
+    border-left: 4px solid var(--success);
+  }
+  .verdict.wrong {
+    background: #fee2e2;
+    color: #991b1b;
+    border-left: 4px solid #dc2626;
+  }
+  .verdict-icon {
+    font-size: 22px;
+    line-height: 1;
+    font-weight: 700;
+  }
+  .verdict b { font-weight: 700; }
+  .explain-box {
+    background: var(--bg-elev);
+    border-left: 3px solid var(--national);
+    padding: 14px 16px;
+    border-radius: 10px;
+    margin-bottom: 14px;
+    font-size: 14px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    animation: slideIn 0.3s ease-out;
+  }
+  .explain-box b { color: var(--ink); }
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== RESULT SCREEN ===== */
+  .result {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    padding: 32px 24px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    margin-bottom: 20px;
+  }
+  .result-icon {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 56px;
+    color: var(--national);
+    margin-bottom: 4px;
+  }
+  .result-icon.pass { color: var(--success); }
+  .result h2 {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 24px;
+    font-weight: 500;
+    margin: 0 0 8px;
+  }
+  .score {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 64px;
+    font-weight: 600;
+    line-height: 1;
+    margin: 12px 0;
+    color: var(--national);
+  }
+  .score.pass { color: var(--success); }
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 16px 0 22px;
+    text-align: left;
+  }
+  .summary-cell {
+    background: var(--bg-elev);
+    padding: 10px 12px;
+    border-radius: 10px;
+  }
+  .summary-cell .lbl {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  .summary-cell .val {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .summary-cell .val.good { color: var(--success); }
+  .summary-cell .val.warn { color: #dc2626; }
+
+  .section-breakdown {
+    margin: 22px 0;
+    text-align: left;
+  }
+  .section-breakdown h3 {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    margin: 0 0 12px;
+    color: var(--ink);
+  }
+  .section-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: var(--bg-elev);
+    border-radius: 10px;
+    margin-bottom: 8px;
+    font-size: 13px;
+  }
+  .section-row .sname {
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+  .section-row .sscore {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 10px;
+  }
+  .section-row .sscore.good { color: var(--success); }
+  .section-row .sscore.warn { color: var(--warn); }
+  .section-row .sscore.bad { color: #dc2626; }
+
+  .review-section {
+    margin-top: 24px;
+    text-align: left;
+  }
+  .review-section h3 {
+    font-family: ui-serif, Georgia, 'Times New Roman', serif;
+    font-size: 18px;
+    margin: 0 0 14px;
+  }
+  .miss-item {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-left: 4px solid #dc2626;
+    border-radius: 12px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+  .miss-item.correct-item { border-left-color: var(--success); }
+  .miss-item .qnum {
+    font-size: 11px;
+    color: var(--ink-mute);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+  .miss-item .qtext {
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.45;
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .miss-item .ans-row {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .miss-item .yours { color: #991b1b; }
+  .miss-item .yours.correct-ans { color: var(--success); }
+  .miss-item .right-ans { color: var(--success); font-weight: 600; }
+  .miss-item .explanation {
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--line);
+    font-size: 13px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .miss-item .explanation b { color: var(--ink); }
+
+  .btn-row {
+    display: flex;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .btn {
+    flex: 1;
+    padding: 14px;
+    border: 0;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .btn.primary { background: var(--national); color: white; }
+  .btn.outline { background: transparent; color: var(--ink); border: 1.5px solid var(--ink); }
+  .btn:active { transform: scale(0.99); }
+
+  .filter-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 14px;
+    background: var(--bg-card);
+    padding: 4px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+  }
+  .filter-tab {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    padding: 8px 12px;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--ink-mute);
+    transition: all 0.15s;
+  }
+  .filter-tab.active {
+    background: var(--ink);
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <header class="header">
+    <div class="logo">Final <span class="accent">prep 90</span></div>
+    <span class="pill">Casey · retake ready</span>
+  </header>
+
+  <!-- START SCREEN -->
+  <div id="start">
+    <div class="start-card">
+      <h1>Retake dress rehearsal.</h1>
+      <p class="lead">90 questions built specifically from your June 20 exam experience. Heavier drilling on cap rate, commission math, CERCLA, deeds, easements, zoning, and estates. Live learning mode: immediate verdict + explanation when you select.</p>
+
+      <div class="info-grid">
+        <div class="info-cell">
+          <div class="lbl">Questions</div>
+          <div class="val">90</div>
+        </div>
+        <div class="info-cell">
+          <div class="lbl">Time limit</div>
+          <div class="val">160 min</div>
+        </div>
+        <div class="info-cell">
+          <div class="lbl">Pass threshold</div>
+          <div class="val">75% (68/90)</div>
+        </div>
+        <div class="info-cell">
+          <div class="lbl">Mode</div>
+          <div class="val">Live</div>
+        </div>
+      </div>
+
+      <div class="blueprint">
+        <b>Adjusted blueprint based on your feedback:</b><br/>
+        Contracts &amp; Agency: 15 · Real Property: 14 · Property Value/Appraisal: 13 · Disclosures &amp; Environmental: 11 · Ownership/Title: 11 · Math: 10 · Practice: 9 · Financing: 7
+      </div>
+
+      <div class="weak-note">
+        <b>Heavier weight on your hard areas:</b> Cap rate math, commission math (all variants), CERCLA/environmental liability, deed types, easement types, zoning tools, estate classifications. These sections have extra questions to lock those concepts down.
+      </div>
+
+      <button class="start-btn" onclick="startExam()">Start exam</button>
+    </div>
+  </div>
+
+  <!-- EXAM SCREEN -->
+  <div id="exam" style="display:none;">
+    <div class="exam-header">
+      <button class="back-btn" onclick="exitExam()">← Exit</button>
+      <div class="progress-info">
+        <div class="progress-num" id="progressNum">1 / 90</div>
+        <div class="timer" id="timer">160:00</div>
+      </div>
+    </div>
+    <div class="progress-bar"><div id="progressBar" style="width: 1.1%"></div></div>
+    <div id="questionContainer"></div>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div id="result" style="display:none;"></div>
+
+</div>
+
+<script>
+window.QUESTIONS = [
+// ============================================================
+// SECTION I — REAL PROPERTY (14 items — heavier weight for you)
+// Focus: estates, zoning tools, easements, restrictive covenants
+// ============================================================
+
+{section:"I. Real Property",
+ q:"Which of the following BEST describes fee simple absolute?",
+ opts:["Ownership subject to a condition subsequent","The highest and most complete form of ownership, held forever without conditions","Ownership for the life of a specified person","Ownership held by two or more persons"], correct:1,
+ explain:"<b>Fee simple absolute</b> = the highest, most complete form of ownership. Lasts forever, fully transferable and inheritable, no conditions attached. Default form of ownership unless something less is specified. Fee simple DEFEASIBLE is subject to a condition; life estate is measured by a life; joint tenancy is a form of co-ownership."},
+
+{section:"I. Real Property",
+ q:"A property is deeded 'to Central Baptist Church, so long as the property is used for religious purposes.' If the property ever ceases to be used for religious purposes, ownership automatically returns to the grantor's heirs. This is a:",
+ opts:["Fee simple absolute","Fee simple determinable","Fee simple subject to condition subsequent","Life estate"], correct:1,
+ explain:"<b>Fee simple determinable</b> — 'so long as,' 'while,' 'during,' 'until' language creates an AUTOMATIC reversion if the condition is violated. Grantor retains a 'possibility of reverter.' Fee simple subject to condition SUBSEQUENT uses 'provided that,' 'on condition that,' and requires the grantor to take action (right of re-entry) to reclaim — no automatic reversion. Watch the trigger language."},
+
+{section:"I. Real Property",
+ q:"A life tenant dies. Under the terms of the original grant, the property is to pass to a named third party rather than reverting to the grantor. That third party's interest is BEST described as a:",
+ opts:["Reversion","Remainder","Right of re-entry","Reverter"], correct:1,
+ explain:"<b>Remainder</b> = a future interest in a third party (not the grantor). <b>Reversion</b> = a future interest returning to the grantor. Both take effect at the end of the preceding estate (typically the life estate). If the grant says 'to A for life, then to B,' B has a remainder. If the grant says 'to A for life' with no further language, the grantor has a reversion."},
+
+{section:"I. Real Property",
+ q:"Which BEST describes a tenancy at sufferance?",
+ opts:["A month-to-month lease continuing indefinitely until proper notice","A tenant who occupies without a formal lease but with landlord consent","A tenant who remains after lease expiration WITHOUT landlord consent","A fixed-term lease with a definite start and end date"], correct:2,
+ explain:"<b>Tenancy at sufferance</b> = the lowest form of tenancy. A holdover tenant remaining after lease expiration without landlord consent — essentially a trespasser the landlord has not yet evicted. If the landlord begins accepting rent, the relationship converts to a periodic tenancy (or tenancy at will). Choice A describes periodic tenancy; B describes tenancy at will; D describes estate for years."},
+
+{section:"I. Real Property",
+ q:"A property owner wants to open a hair salon in her home. The zoning is R-1 (single-family residential) and the zoning code prohibits commercial uses in R-1. She would need to apply for a:",
+ opts:["Special use permit","Area variance","Use variance","Nonconforming use determination"], correct:2,
+ explain:"<b>Use variance</b> — the zoning currently PROHIBITS the intended use. The owner must prove <b>unnecessary hardship</b> (that strict enforcement would deprive her of any reasonable use). Special use permits apply when the code ALLOWS the use with conditions (not the case here). Area variance applies to dimensional rules (setback, height, lot size). Nonconforming use applies to uses that predate a zoning change."},
+
+{section:"I. Real Property",
+ q:"Which of the following BEST distinguishes a special use permit from a variance?",
+ opts:["Special use permits are only for commercial property; variances only for residential","A special use permit allows a use expressly permitted by code with conditions; a variance allows an exception to code requirements","Variances last only one year; special use permits last forever","Special use permits are approved by the mayor; variances by the zoning board"], correct:1,
+ explain:"<b>Special use permit</b> = the zoning code ALLOWS the use, but with conditions specified in the code (parking requirements, hours, screening). The applicant is not asking for an exception — they're meeting predetermined conditions. Classic examples: churches, daycares, schools in residential zones. A <b>variance</b> allows an exception to code — either a USE variance (prohibited use) or an AREA variance (dimensional rule)."},
+
+{section:"I. Real Property",
+ q:"A small hardware store has operated in the same location since 1965. In 2001, the area was rezoned residential-only. The store continues to operate. If the store is destroyed by fire, the owner MOST likely:",
+ opts:["Can rebuild an identical hardware store","Cannot rebuild the hardware store because nonconforming uses generally cannot be reconstructed after major destruction","Can rebuild only with a use variance","Must relocate to a commercial zone"], correct:1,
+ explain:"<b>Nonconforming uses (grandfathered uses) typically cannot be REBUILT after major destruction.</b> Three classic restrictions on nonconforming uses: (1) cannot be EXPANDED, (2) cannot be REBUILT after major destruction, (3) cannot be RESUMED after extended abandonment. The intent is to gradually eliminate nonconforming uses over time. The owner could try for a variance to rebuild, but doesn't have the automatic right."},
+
+{section:"I. Real Property",
+ q:"A property owner grants her neighbor the right to cross her driveway to reach the neighbor's backyard. The right is written into a recorded document and benefits the neighbor's parcel. This is BEST described as:",
+ opts:["An easement in gross","An easement appurtenant","A license","An easement by necessity"], correct:1,
+ explain:"<b>Easement appurtenant</b> = benefits one parcel of land (dominant tenement) at the expense of another (servient tenement). Runs with the land — transfers automatically when either parcel is sold. Easement in gross benefits a PERSON or entity, not a parcel (utility easements are the classic example). A license is REVOCABLE permission (not typically recorded). Easement by necessity is created by law for landlocked parcels."},
+
+{section:"I. Real Property",
+ q:"A power company has the right to run transmission lines across multiple private properties. This right benefits the power company (a corporate entity) rather than any specific parcel of land. This is a(n):",
+ opts:["Easement appurtenant","Easement in gross","License","Encroachment"], correct:1,
+ explain:"<b>Easement in gross</b> = benefits a PERSON or entity, not a parcel of land. Utility easements are the textbook example. Commercial easements in gross (like utility company rights) are typically ASSIGNABLE and transferable. Personal easements in gross (like allowing a friend to fish in your pond) are typically not assignable. Contrast with easement appurtenant, which benefits a specific parcel."},
+
+{section:"I. Real Property",
+ q:"A neighbor's driveway crosses the property line by 3 feet, extending onto the adjoining property. This is BEST classified as:",
+ opts:["An easement appurtenant","An easement by prescription","An encroachment","A license"], correct:2,
+ explain:"<b>Encroachment</b> = unauthorized intrusion of an improvement (driveway, fence, garage, shed) across a property boundary. Discovered by survey. Creates a cloud on title. Remedies: (1) request removal, (2) grant an easement or license, (3) sell the affected strip, (4) let it be (but risk adverse possession or prescriptive easement over time). If the encroachment continues for the statutory period, it can ripen into a prescriptive easement or even adverse possession of the strip."},
+
+{section:"I. Real Property",
+ q:"Restrictive covenants (CC&Rs) in a residential subdivision:",
+ opts:["Are enforced by the local government","Are enforced by other property owners, typically through the HOA","Can only last 30 years by law","Automatically expire when 50% of homes are resold"], correct:1,
+ explain:"<b>Restrictive covenants are PRIVATE restrictions</b> enforced by other property owners in the community, typically through the HOA. Distinct from zoning, which is PUBLIC and enforced by government. Covenants can be drafted for any duration (permanent, time-limited, or self-renewing) — no 30-year expiration rule. The MORE RESTRICTIVE of zoning and covenants controls."},
+
+{section:"I. Real Property",
+ q:"A property owner wants to build a fence 8 feet tall. The zoning code allows fences up to 6 feet, but the subdivision's CC&Rs prohibit fences over 4 feet. What controls?",
+ opts:["Zoning always controls over private covenants","The 4-foot limit — the more restrictive of the two controls","The 6-foot limit — the less restrictive controls","The owner can choose whichever is more convenient"], correct:1,
+ explain:"<b>The MORE RESTRICTIVE of zoning and covenants ALWAYS controls.</b> Zoning sets a floor of public restrictions. Private covenants can add MORE restrictions on top. If covenants say 4 feet and zoning allows 6, the 4-foot limit applies. The owner would face HOA action for exceeding 4 feet, even though the city wouldn't cite them. Same principle applies to material, color, style, minimum size, and other restrictions."},
+
+{section:"I. Real Property",
+ q:"All of the following are physical characteristics of land EXCEPT:",
+ opts:["Immobility","Indestructibility","Scarcity","Non-homogeneity"], correct:2,
+ explain:"<b>Scarcity is an ECONOMIC characteristic, not physical.</b> The three physical characteristics: <b>Immobility, Indestructibility, Non-homogeneity (uniqueness)</b>. The four economic characteristics (SIPA): <b>Scarcity, Improvements/modification, Permanence of investment, Area preference/situs</b>. Pearson VUE loves to swap items between the two lists to trick you."},
+
+{section:"I. Real Property",
+ q:"A rectangular survey system section contains how many acres?",
+ opts:["36 acres","160 acres","320 acres","640 acres"], correct:3,
+ explain:"<b>1 section = 1 square mile = 640 acres.</b> Standard rectangular (government) survey values: township = 36 sq mi = 36 sections; section = 1 sq mi = 640 acres; quarter-section = 160 acres; quarter-quarter section = 40 acres. MEMORIZE these — they're not provided at the test center. Also memorize: 1 acre = 43,560 sq ft; 1 mile = 5,280 ft."},
+
+// ============================================================
+// SECTION II — OWNERSHIP & TITLE (11 items — heavier weight for deeds)
+// ============================================================
+
+{section:"II. Ownership/Title",
+ q:"Which of the following BEST describes a general warranty deed?",
+ opts:["The grantor warrants against defects arising only during their period of ownership","The grantor makes no warranties whatsoever","The grantor warrants against all title defects, including those predating their ownership","The grantor conveys only whatever interest they may have"], correct:2,
+ explain:"<b>General warranty deed = MAXIMUM protection.</b> The grantor warrants against ALL title defects, even those arising BEFORE the grantor's ownership. Contains the five traditional covenants: seisin, right to convey, against encumbrances, quiet enjoyment, warranty forever. Choice A describes a SPECIAL warranty deed. Choice B and D describe a QUITCLAIM deed. Choice D is exactly the quitclaim definition."},
+
+{section:"II. Ownership/Title",
+ q:"A special warranty deed differs from a general warranty deed in that the special warranty deed:",
+ opts:["Provides NO warranties at all","Warrants title only during the grantor's period of ownership, not before","Requires notarization","Can only be used for commercial property"], correct:1,
+ explain:"<b>Special warranty deed</b> warrants title only for the grantor's OWN period of ownership. If a title defect arose before the grantor took ownership, the grantor is not liable under the special warranty. Commonly used by executors, corporations, and REITs — parties who don't want to warrant events that occurred before their tenure. Still stronger than a quitclaim (which offers no warranties)."},
+
+{section:"II. Ownership/Title",
+ q:"A quitclaim deed is BEST described as:",
+ opts:["A deed with maximum warranties","A deed that conveys only whatever interest the grantor may have, with no warranties","A deed used only for transfers between spouses","A deed that automatically clears all title defects"], correct:1,
+ explain:"<b>Quitclaim deed</b> conveys only whatever interest the grantor may have — which could be everything, something, or NOTHING. Contains no warranties. Common uses: (1) clearing clouds on title, (2) divorce settlements, (3) correcting errors in prior deeds, (4) intra-family transfers. If the grantor turns out to have no interest, the grantee gets nothing and has no recourse. The 'weakest' deed, but useful in specific situations."},
+
+{section:"II. Ownership/Title",
+ q:"Ranked from GREATEST to LEAST protection, the deed hierarchy is:",
+ opts:["Quitclaim > Bargain and sale > Special warranty > General warranty","General warranty > Special warranty > Bargain and sale > Quitclaim","Bargain and sale > General warranty > Quitclaim > Special warranty","Special warranty > General warranty > Bargain and sale > Quitclaim"], correct:1,
+ explain:"<b>Deed protection ranking (greatest to least):</b><br>1. <b>General warranty deed</b> — all defects, all time periods<br>2. <b>Special warranty deed</b> — defects only during grantor's ownership<br>3. <b>Bargain and sale deed</b> — implies title but no express warranties<br>4. <b>Quitclaim deed</b> — no warranties, just conveys whatever interest exists<br>Buyers should always prefer the highest-protection deed the seller will provide."},
+
+{section:"II. Ownership/Title",
+ q:"For a deed to be VALID (as opposed to recordable), which of the following is NOT required?",
+ opts:["Signature of the grantor","Delivery to and acceptance by the grantee","Notarization","Adequate legal description"], correct:2,
+ explain:"<b>Notarization is NOT required for a deed to be VALID.</b> Notarization (acknowledgment) is required to RECORD the deed in public records — but the deed is valid between grantor and grantee without recording or notarization. Required for validity: writing, competent grantor, identifiable grantee, words of conveyance, adequate legal description, grantor's signature, DELIVERY to and ACCEPTANCE by grantee during grantor's lifetime."},
+
+{section:"II. Ownership/Title",
+ q:"A deed is signed by the grantor but left in a drawer. The grantor dies before delivering the deed. The grantee's rights are:",
+ opts:["Complete — the signed deed transfers title","Complete once the grantee physically receives the deed","None — an undelivered deed transfers nothing","Determined by state intestacy law"], correct:2,
+ explain:"<b>Delivery is essential for deed validity.</b> A signed, undelivered deed transfers nothing. The grantor's DEATH before delivery destroys the intended conveyance — the deed cannot be delivered posthumously. The property passes according to the grantor's will (if testate) or intestacy law (if not). The grantee has no rights. This is why closings involve physical delivery of the deed — it's not just ceremonial."},
+
+{section:"II. Ownership/Title",
+ q:"Two unmarried partners take title to a property 'as joint tenants with right of survivorship.' One partner later sells their interest to a third party. The result is:",
+ opts:["The joint tenancy continues with the new owner","The joint tenancy is destroyed; the two remaining owners hold as tenants in common","The transfer is void because joint tenancy cannot be severed","The third party takes the entire property"], correct:1,
+ explain:"<b>A unilateral transfer breaks the unities (Time and Title) required for joint tenancy.</b> The transferring joint tenant's interest converts to a tenancy in common between the new owner and the remaining original owner. Joint tenancy requires PITT: Possession, Interest, Time, Title unities. If any unity is broken, JT converts to TIC. If three or more joint tenants existed, the remaining ones would continue as JT among themselves; the new owner would be TIC with the group."},
+
+{section:"II. Ownership/Title",
+ q:"Which is REQUIRED for tenancy by the entirety but NOT for joint tenancy?",
+ opts:["Unity of possession","Unity of interest","Unity of person (marriage)","Right of survivorship"], correct:2,
+ explain:"<b>Unity of PERSON (marriage) is required for tenancy by the entirety, not joint tenancy.</b> TBE is essentially joint tenancy plus the 5th unity — the parties must be married. Neither spouse can sell or encumber without the other's consent. Terminated by death (survivor takes all) or divorce (converts to TIC). Joint tenancy has 4 unities (PITT: Possession, Interest, Time, Title) — no marriage required."},
+
+{section:"II. Ownership/Title",
+ q:"A property owner records the deed to her new home. The PRIMARY legal purpose of recording is to:",
+ opts:["Make the deed valid between grantor and grantee","Provide constructive notice to the world of the ownership change","Trigger property tax reassessment","Comply with the Statute of Frauds"], correct:1,
+ explain:"<b>Constructive notice</b> is the primary purpose of recording. The deed is valid between the parties WITHOUT recording. Recording protects the grantee against later bona fide purchasers who might otherwise take priority. Recording also establishes lien priority. Transfer tax collection is a byproduct, not the purpose. Recording does not satisfy the Statute of Frauds — that requires writing and signature."},
+
+{section:"II. Ownership/Title",
+ q:"A property owner dies with a valid will leaving 'my house to my daughter.' However, the house was held in joint tenancy with the owner's spouse. What happens to the house?",
+ opts:["The daughter takes the house per the will","The house passes to the spouse by right of survivorship","The house goes through probate and is divided","The house escheats to the state"], correct:1,
+ explain:"<b>Operation of law BEATS the will.</b> Joint tenancy with right of survivorship transfers automatically to the surviving joint tenant at death, bypassing probate and OVERRIDING the will. The spouse takes the house; the daughter gets nothing from this property. Other examples of operation of law overriding wills: tenancy by entirety survivorship, spousal elective share, federal tax liens, and beneficiary designations on retirement accounts."},
+
+{section:"II. Ownership/Title",
+ q:"Property tax liens have which of the following characteristics?",
+ opts:["They are paid last in a foreclosure sale","They have super-priority ahead of all other liens","They can only be enforced through court action","They expire after 5 years if not enforced"], correct:1,
+ explain:"<b>Property tax liens have super-priority ahead of ALL other liens</b> — including previously recorded mortgages. Unpaid property taxes can result in a tax sale that wipes out the mortgage lender's interest. This is why lenders often require escrow accounts for property taxes: they don't want their loan wiped out by unpaid taxes. Mechanic's liens sometimes have similar priority dating back to start of work; special assessment liens may also carry priority."},
+
+// ============================================================
+// SECTION III — PROPERTY VALUE & APPRAISAL (13 items — heavier for cap rate)
+// ============================================================
+
+{section:"III. Property Value & Appraisal",
+ q:"Which of the following BEST defines market value?",
+ opts:["The actual price for which a property recently sold","The most probable price under fair market conditions: willing buyer, willing seller, both informed, no duress","The cost to build the improvements plus land value","The assessed value used for tax purposes"], correct:1,
+ explain:"<b>Market value</b> = the most probable price a property would bring in a competitive, open market under all conditions requisite to a fair sale: willing buyer, willing seller, both well-informed, neither under duress, exposed to the market a reasonable time. Choice A is market PRICE (what it actually sold for) — may differ from value. Choice C describes cost. Choice D is assessed value. Note the precise distinction between market value and market price — Pearson VUE tests this."},
+
+{section:"III. Property Value & Appraisal",
+ q:"An apartment building generates $78,000 in annual net operating income. The market cap rate for similar buildings is 6.5%. Using the income capitalization approach, the property's estimated value is:",
+ opts:["$507,000","$960,000","$1,200,000","$1,469,231"], correct:2,
+ explain:"<b>Value = NOI ÷ Cap Rate = $78,000 ÷ 0.065 = $1,200,000.</b> The income approach formula divides NOI by the cap rate. Common trap: multiplying instead of dividing ($78,000 × 6.5 = $507,000 — wrong). Sanity check: a 6.5% return on $1,200,000 is $78,000 — matches. NOI is calculated BEFORE debt service, depreciation, and income taxes."},
+
+{section:"III. Property Value & Appraisal",
+ q:"A commercial building sold recently for $850,000 with an annual NOI of $63,750. What is the cap rate for that transaction?",
+ opts:["6.5%","7.5%","8.5%","13.3%"], correct:1,
+ explain:"<b>Cap Rate = NOI ÷ Value = $63,750 ÷ $850,000 = 0.075 = 7.5%.</b> When solving for cap rate, divide NOI by sale price. The three forms of the income approach formula: Value = NOI ÷ Cap Rate; Cap Rate = NOI ÷ Value; NOI = Value × Cap Rate. Common trap: $850,000 ÷ $63,750 = 13.3 (inverted) — wrong direction. Always divide the SMALLER number (NOI) by the LARGER (value) to get the rate."},
+
+{section:"III. Property Value & Appraisal",
+ q:"An apartment building has gross scheduled income of $156,000, vacancy losses of 6%, and operating expenses of $42,500. Using a 7.5% market cap rate, the estimated value is:",
+ opts:["$1,188,533","$1,388,533","$1,466,667","$1,514,000"], correct:1,
+ explain:"<b>Multi-step:</b> Vacancy = $156,000 × 0.06 = $9,360. Effective Gross Income = $156,000 − $9,360 = $146,640. NOI = $146,640 − $42,500 = $104,140. Value = $104,140 ÷ 0.075 = <b>$1,388,533</b>. The exam loves to bury NOI inside a longer scenario. You must: (1) subtract vacancy from GSI to get EGI, (2) subtract opex to get NOI, (3) THEN apply cap rate. Common trap: skipping vacancy entirely."},
+
+{section:"III. Property Value & Appraisal",
+ q:"Which of the following is NOT subtracted when calculating NOI?",
+ opts:["Vacancy and collection losses","Operating expenses","Property management fees","Debt service (mortgage payments)"], correct:3,
+ explain:"<b>Debt service is NOT deducted from NOI.</b> NOI is calculated BEFORE debt service, depreciation, and income taxes. The income approach measures the property's operating performance independent of how it's financed. Mortgage payments are a function of the buyer's financing choices, not the property's operations. Two different buyers with different loans would compute the same NOI on the same property. This is a common trap."},
+
+{section:"III. Property Value & Appraisal",
+ q:"An appraiser is valuing a newly constructed church building. Which appraisal approach should be given the MOST weight?",
+ opts:["Sales comparison approach","Cost approach","Income capitalization approach","Gross rent multiplier"], correct:1,
+ explain:"<b>Cost approach</b> is most appropriate for special-purpose properties (churches, schools, government buildings, museums) and new construction. Sales comparison fails because there are few or no comparable sales for these unique property types. Income approach fails because they're not income-producing. Cost approach captures reproduction/replacement cost minus minimal depreciation (new construction) plus land value."},
+
+{section:"III. Property Value & Appraisal",
+ q:"In the sales comparison approach, a comparable property sold for $325,000. The comp has a two-car garage worth approximately $20,000; the subject property has only a one-car garage. The appraiser should:",
+ opts:["Add $20,000 to the comp's price","Subtract $20,000 from the comp's price","Add $20,000 to the subject's value","Make no adjustment"], correct:1,
+ explain:"<b>Always adjust the COMP, not the subject.</b> The comp has a feature the subject LACKS (extra garage bay worth $20,000), so the comp's price is adjusted DOWNWARD to $305,000 — imagining what the comp would have sold for without that feature, to put it on equal footing with the subject. Memory hook: <b>CIA = Comp Inferior Add, Comp Superior Subtract</b> (with respect to the subject)."},
+
+{section:"III. Property Value & Appraisal",
+ q:"A new highway is built directly behind a residential property, significantly reducing its value due to noise. This value loss is BEST classified as:",
+ opts:["Physical deterioration","Functional obsolescence","External (economic) obsolescence","Curable depreciation"], correct:2,
+ explain:"<b>External (economic) obsolescence</b> = loss of value caused by factors OUTSIDE the property (neighborhood decline, nearby noise, environmental changes). It is <b>INCURABLE</b> because the owner cannot fix conditions outside their property line. Physical deterioration is wear and tear. Functional obsolescence is outdated design or features within the property (like a one-bath house in a 4-bedroom market)."},
+
+{section:"III. Property Value & Appraisal",
+ q:"The appraisal principle stating that a buyer will pay no more for a property than the cost of an equally desirable substitute is the principle of:",
+ opts:["Substitution","Conformity","Anticipation","Contribution"], correct:0,
+ explain:"<b>Substitution</b> — the foundation of all three appraisal approaches. If a buyer can buy an equivalent property for less, they will. Anticipation = future benefits create value. Conformity = maximum value when property matches its neighborhood. Contribution = an improvement's added value ≠ its cost (a $50,000 pool may only add $10,000 of value)."},
+
+{section:"III. Property Value & Appraisal",
+ q:"Which of the following BEST describes the four characteristics required for value?",
+ opts:["Location, Condition, Age, Size","Demand, Utility, Scarcity, Transferability","Cost, Income, Comparability, Time","Land, Labor, Capital, Management"], correct:1,
+ explain:"<b>DUST: Demand, Utility, Scarcity, Transferability.</b> All four required for value to exist. Air has utility and demand but no scarcity → no market value. Something without transferability (like a public park you cannot own) may have utility but no economic value. All four must be present for a property to have market value."},
+
+{section:"III. Property Value & Appraisal",
+ q:"A CMA (Comparative Market Analysis) differs from an appraisal in that a CMA:",
+ opts:["Is prepared by a licensed real estate agent for a client, not by a licensed or certified appraiser","Uses the income approach exclusively","Is required for all real estate transactions","Is enforceable in court as an official value"], correct:0,
+ explain:"<b>CMA = prepared by a licensed real estate agent to help set a listing price or offer.</b> It's NOT an appraisal. Only licensed/certified appraisers can produce appraisals, which must follow USPAP (Uniform Standards of Professional Appraisal Practice). PA requires CMAs to conspicuously state they are not appraisals. CMAs are marketing tools, not formal value opinions."},
+
+{section:"III. Property Value & Appraisal",
+ q:"The concept of 'highest and best use' requires that the use be all of the following EXCEPT:",
+ opts:["Legally permissible","Physically possible","Financially feasible","Currently the actual use"], correct:3,
+ explain:"<b>Highest and best use is INDEPENDENT of current use.</b> The four criteria: legally permissible, physically possible, financially feasible, and maximally productive. The 'highest and best use' may be DIFFERENT from what's currently there. An underutilized commercial property in a high-density mixed-use zone might have a higher and better use as apartments — the appraiser must identify and value that potential."},
+
+{section:"III. Property Value & Appraisal",
+ q:"The gross rent multiplier (GRM) is calculated as:",
+ opts:["Sale price ÷ NOI","Annual rent ÷ Cap rate","Sale price ÷ Monthly (or annual) gross rent","Monthly rent × 12"], correct:2,
+ explain:"<b>GRM = Sale Price ÷ Gross Rent</b> (either monthly or annual, depending on convention). Used for small residential rentals (1-4 units) as a rough valuation shortcut. Estimated Value = GRM × Subject's Gross Rent. GRM uses GROSS rent, not net — so it's less precise than direct capitalization but faster to calculate. Its main use is quick comparison among similar small rental properties."},
+
+// ============================================================
+// SECTION IV — CONTRACTS & AGENCY (15 items)
+// ============================================================
+
+{section:"IV. Contracts & Agency",
+ q:"Which of the following BEST describes a valid contract?",
+ opts:["A contract that has been signed by both parties","A contract with all essential elements: offer/acceptance, consideration, legal purpose, competent parties, genuine consent","A contract that has been recorded","A contract that has been notarized"], correct:1,
+ explain:"<b>A valid contract requires all essential elements.</b> Signing, recording, and notarizing are not by themselves elements of validity. The essentials: offer and acceptance (mutual assent), consideration, legal purpose, competent parties (capacity), and genuine consent (assent). Missing any renders the contract void, voidable, or unenforceable depending on the missing element."},
+
+{section:"IV. Contracts & Agency",
+ q:"A buyer signs a contract to purchase a property after the seller's agent misrepresents the lot size as 2 acres when it is actually 1.2 acres. Which contract element is compromised?",
+ opts:["Consideration","Legal purpose","Genuine consent","Competent parties"], correct:2,
+ explain:"<b>Fraud, misrepresentation, duress, and undue influence compromise GENUINE CONSENT (assent).</b> The buyer agreed based on false information — their mental agreement to the contract was defective. The contract is VOIDABLE by the injured party (the buyer). Consideration was still exchanged (buyer pays; seller delivers). Legal purpose exists. Both parties were competent. What broke is genuine consent. <b>Fraud kills CONSENT, not consideration.</b>"},
+
+{section:"IV. Contracts & Agency",
+ q:"An oral contract for the sale of real estate is BEST described as:",
+ opts:["Valid and enforceable","Void from the beginning","Unenforceable under the Statute of Frauds","Automatically converted to a written contract by law"], correct:2,
+ explain:"<b>Unenforceable</b> — under the Statute of Frauds, real estate contracts must be in writing and signed by the party to be charged. An oral real estate contract isn't VOID (it could be honored voluntarily) — it's UNENFORCEABLE in court. Neither party can compel performance. Note the distinction: void = no legal effect at all; unenforceable = real agreement but courts won't compel performance."},
+
+{section:"IV. Contracts & Agency",
+ q:"A seller and buyer signed a sales contract on May 1. Closing is scheduled for June 15. Between May 1 and June 15, the contract is BEST described as:",
+ opts:["Executed","Executory","Implied","Voidable"], correct:1,
+ explain:"<b>Executory</b> — a contract where some or all duties remain to be performed. After both parties have fully performed (closing complete, deed delivered, funds disbursed), the contract becomes EXECUTED. Note: 'executed' in contract law does NOT mean 'signed' — it means 'fully performed.' A signed but not-yet-closed contract is executory, not executed."},
+
+{section:"IV. Contracts & Agency",
+ q:"An option contract to purchase real estate is BEST classified as:",
+ opts:["Bilateral","Unilateral","Void","Implied"], correct:1,
+ explain:"<b>Unilateral</b> — only ONE party (the optionor/seller) makes a promise: to sell IF the optionee chooses to exercise. The optionee has no obligation to buy. One promise, one act. A standard purchase contract is BILATERAL: both parties make promises (buyer promises to buy, seller promises to sell)."},
+
+{section:"IV. Contracts & Agency",
+ q:"A minor (age 17) signs a contract to purchase real estate. The contract is BEST described as:",
+ opts:["Void","Voidable by the minor","Voidable by either party","Fully enforceable"], correct:1,
+ explain:"<b>Voidable by the MINOR only.</b> Contracts with minors lack the element of 'competent parties.' The minor may choose to void or affirm — they have the choice. The adult party CANNOT void the contract simply because the other was a minor. Same principle protects mentally incapacitated persons and those under undue influence."},
+
+{section:"IV. Contracts & Agency",
+ q:"An offer to purchase real estate can be terminated by all of the following EXCEPT:",
+ opts:["Rejection by the offeree","Counter-offer by the offeree","Death of the offeror before acceptance","Silence of the offeree for one day"], correct:3,
+ explain:"<b>Silence for one day does not automatically terminate an offer.</b> An offer terminates by: rejection, counter-offer (both a rejection AND a new offer), revocation by offeror before acceptance, LAPSE of specified time (or a reasonable time if none specified), death or incapacity of either party, destruction of subject matter, or subsequent illegality. A brief silence is not the same as lapse of time — the offer generally remains open for a reasonable time."},
+
+{section:"IV. Contracts & Agency",
+ q:"A seller breaches by refusing to close after all contingencies are satisfied. The buyer wants to force the sale. The remedy is:",
+ opts:["Rescission","Specific performance","Reformation","Novation"], correct:1,
+ explain:"<b>Specific performance</b> — a court order compelling the breaching party to perform as agreed. Particularly available in real estate because each parcel is considered UNIQUE — money damages cannot fully substitute for the property itself. Rescission cancels the contract. Reformation rewrites terms to reflect true intent. Novation substitutes new contract or party with the original party released."},
+
+{section:"IV. Contracts & Agency",
+ q:"A licensee representing a seller is asked by a buyer: 'Would the seller accept less than asking price?' The BEST response is:",
+ opts:["'Yes, the seller has indicated flexibility'","'No, the listing price is firm'","'I cannot share that information; please submit a written offer'","'Make me your best offer and I'll see what I can do'"], correct:2,
+ explain:"<b>Revealing seller flexibility would breach the fiduciary duty of confidentiality.</b> The licensee must protect the client's negotiating position. Telling the buyer the seller will take less weakens the seller. The licensee can invite a written offer without disclosing client information. Confidentiality survives even after the agency relationship ends."},
+
+{section:"IV. Contracts & Agency",
+ q:"Which of the following BEST describes a licensee's relationship with a customer (as opposed to a client)?",
+ opts:["Full fiduciary duties","Honesty and fair dealing, but no fiduciary duties","Complete loyalty and confidentiality","No obligations of any kind"], correct:1,
+ explain:"<b>Customers are owed honesty and fair dealing, NOT fiduciary duties.</b> The fiduciary duties (OLDCAR: Obedience, Loyalty, Disclosure, Confidentiality, Accounting, Reasonable care) are reserved for CLIENTS. A licensee can work with a customer (the other party to a transaction), provide accurate information, and treat them fairly — but the licensee does not represent them or advocate for their interests."},
+
+{section:"IV. Contracts & Agency",
+ q:"An agent's duty of confidentiality to a client:",
+ opts:["Ends at closing","Ends when the agency relationship terminates","Continues indefinitely, even after the agency ends","Ends after one year"], correct:2,
+ explain:"<b>Confidentiality SURVIVES the end of the agency relationship — it continues indefinitely.</b> An agent who learned confidential information (client's bottom line, financial situation, personal circumstances, motivations for selling/buying) while representing that client cannot share that information years later. This continuing duty applies to all client confidences learned during representation."},
+
+{section:"IV. Contracts & Agency",
+ q:"An agent represents BOTH the buyer and the seller in the same transaction. This is:",
+ opts:["Always illegal","Permitted only with informed written consent from both parties","Permitted automatically when both use the same brokerage","Permitted only in commercial transactions"], correct:1,
+ explain:"<b>Dual agency requires informed, WRITTEN consent from both parties.</b> With both parties' consent after full disclosure, dual agency is permitted in most states (though limited in some). The agent's role becomes constrained — cannot advocate for either side or share confidential information between them. Some states use 'designated agency' to allow one brokerage to represent both sides via separate salespersons."},
+
+{section:"IV. Contracts & Agency",
+ q:"An agent's fiduciary duties to a client, remembered by OLDCAR, include all of the following EXCEPT:",
+ opts:["Loyalty","Disclosure of material facts","Confidentiality","Guaranteed profit for the client"], correct:3,
+ explain:"<b>Guaranteed profit is not a fiduciary duty — nothing guarantees profit.</b> OLDCAR: <b>O</b>bedience to lawful instructions, <b>L</b>oyalty (client's interests first), <b>D</b>isclosure of material facts, <b>C</b>onfidentiality, <b>A</b>ccounting for funds, <b>R</b>easonable care and diligence. The agent must use reasonable skill and effort, but the market determines results, not the agent."},
+
+{section:"IV. Contracts & Agency",
+ q:"An agency relationship terminates by all of the following EXCEPT:",
+ opts:["Performance of the agency purpose","Mutual agreement of the parties","Death of either party","A unilateral decision by the agent to keep client information confidential"], correct:3,
+ explain:"<b>Confidentiality is a continuing DUTY, not a method of termination.</b> Agency terminates by: performance (purpose fulfilled), expiration of the term, mutual agreement, revocation by principal, renunciation by agent, operation of law (death, incapacity, bankruptcy, destruction, illegality), or mutual breach. Keeping confidential information private is required — it never ends the relationship; it outlives it."},
+
+{section:"IV. Contracts & Agency",
+ q:"A 'time is of the essence' clause means:",
+ opts:["The contract must close within 30 days","Performance dates are strictly enforced; missing them is a breach","Either party can extend deadlines","The contract self-terminates after one year"], correct:1,
+ explain:"<b>'Time is of the essence' = deadlines strictly enforced.</b> Without this clause, courts may allow a reasonable extension of performance dates. WITH the clause, missing a deadline is a breach of contract. Read every contract for this language — it converts soft deadlines into hard ones and dramatically changes the consequences of any delay."},
+
+// ============================================================
+// SECTION V — REAL ESTATE PRACTICE (9 items)
+// ============================================================
+
+{section:"V. Real Estate Practice",
+ q:"Which of the following is NOT a federally protected class under the Fair Housing Act?",
+ opts:["Familial status","National origin","Age","Disability"], correct:2,
+ explain:"<b>Age is NOT federally protected under the Fair Housing Act.</b> The seven federal classes: Race, Color, Religion, National Origin (1968); Sex (1974); Familial Status and Disability (1988). Some states protect age (and marital status, source of income, etc.) but federal law does not. ECOA protects age for CREDIT decisions, but not FHA for housing decisions."},
+
+{section:"V. Real Estate Practice",
+ q:"A landlord in an owner-occupied 3-unit building refuses to rent to a family with children and posts a 'no children' ad. Under federal law:",
+ opts:["Both the refusal and the ad are legal under Mrs. Murphy","The refusal may be exempt but the advertising is illegal","Both are illegal regardless of exemption","Both are legal because 3-unit buildings are exempt"], correct:1,
+ explain:"<b>Discriminatory advertising is NEVER exempt under federal law.</b> The Mrs. Murphy exemption (owner-occupied 1-4 unit buildings) may permit the underlying discrimination in this scenario — BUT any discriminatory advertising is always illegal. So the landlord could arguably refuse family renters privately, but posting the ad violates federal law. Also: RACE is NEVER exempt under any circumstances (1866 Civil Rights Act)."},
+
+{section:"V. Real Estate Practice",
+ q:"An agent tells a buyer, 'This neighborhood is mostly Christian families — you'd fit right in.' This is BEST classified as:",
+ opts:["Blockbusting","Steering","Redlining","Legitimate market analysis"], correct:1,
+ explain:"<b>Steering</b> = directing prospective buyers or renters toward or away from particular neighborhoods based on a protected class (here, religion). Even when the agent thinks they're being 'helpful,' characterizing neighborhoods by protected-class composition violates federal Fair Housing law. Agents should describe neighborhoods by objective features (schools, commute, amenities) without reference to demographic composition."},
+
+{section:"V. Real Estate Practice",
+ q:"A landlord with a no-pets policy is asked by a prospective tenant to accommodate a licensed service dog for a disability. The landlord:",
+ opts:["Must allow the service dog as a reasonable accommodation","Can refuse because of the no-pets policy","Can require the tenant to pay a pet deposit","Must first verify the disability with a doctor"], correct:0,
+ explain:"<b>Service animals are a reasonable accommodation under the Fair Housing Act — NOT considered 'pets.'</b> The no-pets policy does not apply. The landlord cannot charge a pet deposit or fee. The landlord may ask for documentation of disability IF the disability is not obvious, but cannot demand medical records. Emotional support animals also qualify with documentation. Service and support animals are NOT pets — they're accommodations."},
+
+{section:"V. Real Estate Practice",
+ q:"Two competing brokers agree over lunch to each charge a 6% commission rate. This conduct is:",
+ opts:["Acceptable if the rate is customary in the area","A per-se violation of federal antitrust law","Acceptable with state real estate commission approval","Acceptable if the rate isn't discussed with clients"], correct:1,
+ explain:"<b>Per-se illegal price fixing under the Sherman Antitrust Act.</b> Brokers must independently set their own commission rates. Any agreement among competitors to fix prices is illegal REGARDLESS of the rate itself, customary practice, or whether the rate is discussed with clients. Penalties: criminal fines, treble damages, possible imprisonment. Each brokerage sets its own rates alone."},
+
+{section:"V. Real Estate Practice",
+ q:"In a property management arrangement, the parties to the management agreement are:",
+ opts:["The manager and each tenant","The manager and the property owner","The manager, owner, and tenants","The manager and the brokerage employing them"], correct:1,
+ explain:"<b>The manager and the property OWNER are the parties to the management agreement.</b> Tenants are NOT parties — they have a separate contract (the lease) with the owner. Manager's fiduciary duties run to the owner, not tenants. Tenants receive honest and lawful treatment but not fiduciary representation."},
+
+{section:"V. Real Estate Practice",
+ q:"A tenant paid a security deposit at the start of a lease. During the lease, the landlord experiences financial trouble and uses the deposit for personal expenses, planning to repay before the lease ends. This is BEST described as:",
+ opts:["Legitimate business practice","Commingling only","Conversion (theft) of funds","Permitted under most state laws"], correct:2,
+ explain:"<b>Conversion (theft) of funds.</b> Using client/tenant funds for personal purposes is theft, even if the landlord intends to repay. Commingling = mixing funds together (bad, but not necessarily theft). Conversion = actually using someone else's funds for one's own purposes (theft). Both are serious violations. Security deposits must be held in a separate trust account, not mixed with operating funds."},
+
+{section:"V. Real Estate Practice",
+ q:"Which lease type has the tenant paying base rent plus property taxes, insurance, AND maintenance?",
+ opts:["Gross lease","Single net lease","Double net lease","Triple net (NNN) lease"], correct:3,
+ explain:"<b>Triple net (NNN) lease</b> — tenant pays base + property taxes + insurance + maintenance. Common in commercial and retail. Single net = taxes only. Double net = taxes + insurance. Gross lease = tenant pays only rent; landlord pays all operating expenses. Percentage lease = base + % of sales."},
+
+{section:"V. Real Estate Practice",
+ q:"The Americans with Disabilities Act (ADA) Title III applies to:",
+ opts:["Private single-family residences","Public accommodations and commercial facilities","All real estate transactions","Only federal government buildings"], correct:1,
+ explain:"<b>Title III covers public accommodations and commercial facilities</b> — businesses open to the public (restaurants, hotels, retail, real estate brokerages). Private residences are NOT covered by the ADA (they're covered by the Fair Housing Act's disability protections instead). Title I covers employment (15+ employees); Title II covers state/local government services."},
+
+// ============================================================
+// SECTION VI — DISCLOSURES & ENVIRONMENTAL (11 items — heavier for CERCLA)
+// ============================================================
+
+{section:"VI. Disclosures & Environmental",
+ q:"CERCLA liability for environmental cleanup is BEST described as:",
+ opts:["Limited to whoever caused the contamination","Limited to the current owner only","Strict, joint, and several — applies to current AND former owners","Limited to commercial properties only"], correct:2,
+ explain:"<b>Strict, joint, and several liability.</b> <b>Strict</b> = no negligence required (you can be liable simply for owning). <b>Joint and several</b> = any single party can be held liable for the entire cleanup cost. <b>Current AND former owners</b> may all be liable. The 'innocent landowner' defense requires demonstrating proper due diligence — typically a Phase I Environmental Site Assessment before purchase. CERCLA = Comprehensive Environmental Response, Compensation, and Liability Act of 1980 (Superfund)."},
+
+{section:"VI. Disclosures & Environmental",
+ q:"The 'innocent landowner defense' under CERCLA requires the purchaser to have:",
+ opts:["Purchased title insurance","Conducted appropriate due diligence, typically through a Phase I Environmental Site Assessment","Been unaware that the property existed","Purchased the property from a government entity"], correct:1,
+ explain:"<b>Innocent landowner defense requires appropriate DUE DILIGENCE at time of purchase.</b> This typically means a Phase I ESA (records review, site visit, interviews) to identify any 'recognized environmental conditions' (RECs). If Phase I identifies concerns, the buyer must investigate further (Phase II sampling) to maintain the defense. Simply not knowing about contamination doesn't protect you — you must have TRIED to find out through appropriate channels."},
+
+{section:"VI. Disclosures & Environmental",
+ q:"A Phase I Environmental Site Assessment includes all of the following EXCEPT:",
+ opts:["Review of historical property records","Physical site visit and visual inspection","Interviews with current and prior occupants","Soil and groundwater sampling and laboratory testing"], correct:3,
+ explain:"<b>Sampling and testing is Phase II, not Phase I.</b> Phase I is NON-INVASIVE: records review, site visit, interviews to identify 'recognized environmental conditions' (RECs). If RECs are found, Phase II includes actual sampling and lab analysis. Phase III is remediation if Phase II confirms contamination. Innocent landowner defense typically requires Phase I completion (and Phase II if triggered)."},
+
+{section:"VI. Disclosures & Environmental",
+ q:"Which of the following BEST describes a 'brownfield' property?",
+ opts:["An undeveloped agricultural parcel","A property listed on the EPA's National Priorities List","A previously developed property whose redevelopment is complicated by known or potential contamination","A property in a floodplain"], correct:2,
+ explain:"<b>Brownfields are previously developed properties</b> — typically former industrial or commercial sites — whose redevelopment is complicated by the actual or potential presence of hazardous substances. EPA's Brownfields Program provides grants and liability protections to encourage redevelopment. Distinct from Superfund NPL sites (severely contaminated, federally remediated). Brownfields are typically moderately contaminated and redevelopable after appropriate cleanup."},
+
+{section:"VI. Disclosures & Environmental",
+ q:"Federal lead-based paint disclosure requirements apply to housing built BEFORE:",
+ opts:["1968","1972","1978","1985"], correct:2,
+ explain:"<b>1978</b> — the year the Consumer Product Safety Commission banned lead-based paint in residential use. The Residential Lead-Based Paint Hazard Reduction Act of 1992, Section 1018, requires sellers/lessors of pre-1978 'target housing' to provide disclosures. Source: 40 CFR Part 745 Subpart F."},
+
+{section:"VI. Disclosures & Environmental",
+ q:"Under federal lead-paint rules, the buyer of pre-1978 housing must be given how many days to conduct an inspection?",
+ opts:["3 days","10 days","21 days","30 days"], correct:1,
+ explain:"<b>10 days</b> for the buyer to conduct a paint inspection or risk assessment at the buyer's own expense. Parties may agree in writing to lengthen, shorten, or waive this period. Also: seller must retain the signed disclosure form for <b>3 years</b> from sale or lease commencement. Common confusion: don't mix up the 10-day inspection window with the 3-year retention period."},
+
+{section:"VI. Disclosures & Environmental",
+ q:"A buyer wants to see the seller's home insurance claim history to check for hidden water damage. To obtain the CLUE report, the buyer should:",
+ opts:["Request it from LexisNexis directly","Ask the seller to request and share their CLUE report","Request it from the buyer's own insurance company","File a public records request"], correct:1,
+ explain:"<b>Only the property OWNER can request a CLUE report.</b> CLUE (Comprehensive Loss Underwriting Exchange) reports show 7 years of insurance claims tied to the owner and property. A buyer cannot access another person's insurance history — the buyer must ask the SELLER to obtain and share the report. The seller is entitled to a free copy annually from LexisNexis."},
+
+{section:"VI. Disclosures & Environmental",
+ q:"A seller signs a contract that includes 'as-is' language. Which is TRUE regarding the seller's disclosure obligations?",
+ opts:["As-is eliminates all disclosure obligations","The seller need not disclose any defects","As-is means the seller won't make repairs but must still disclose known material defects","As-is means the buyer accepts responsibility for any hidden defects"], correct:2,
+ explain:"<b>'As-is' addresses REPAIRS, not disclosure.</b> A seller cannot use 'as-is' language to conceal known material defects — failure to disclose known defects is fraud (misrepresentation by omission), and 'as-is' does not protect against fraud claims. As-is means: (1) the seller won't fix things, (2) the buyer knowingly accepts the property in its current condition. But the buyer must know what that condition is — hence the disclosure requirement."},
+
+{section:"VI. Disclosures & Environmental",
+ q:"A property is located in a FEMA Special Flood Hazard Area (SFHA). The buyer is obtaining a federally backed mortgage. Flood insurance is:",
+ opts:["Optional for the buyer","Required by federal law for the duration of the loan","Required only if the property has flooded before","Automatically transferred from the seller's policy"], correct:1,
+ explain:"<b>Properties in SFHAs with federally backed mortgages REQUIRE flood insurance</b> under the National Flood Insurance Act of 1968. Coverage typically comes from NFIP (National Flood Insurance Program) or qualifying private insurers. Required for the LIFE of the loan. Past flood history is irrelevant — being in the SFHA is the trigger. Seller's policy does NOT auto-transfer; buyer must obtain their own."},
+
+{section:"VI. Disclosures & Environmental",
+ q:"Radon is BEST described as:",
+ opts:["A synthetic chemical banned by EPA in 1978","A naturally occurring radioactive gas from uranium decay","A pesticide residue found in soil","A byproduct of underground fuel tanks"], correct:1,
+ explain:"<b>Radon</b> = naturally occurring radioactive gas from the decay of uranium in soil and rock. Enters buildings through foundation cracks. <b>Second leading cause of lung cancer in the U.S.</b> EPA action level: <b>4 pCi/L</b>. Testing is recommended for real estate transactions. Mitigation systems vent the gas before it enters living spaces."},
+
+{section:"VI. Disclosures & Environmental",
+ q:"A stigmatized property is BEST described as:",
+ opts:["A property with a hazardous physical defect","A property associated with events that may affect desirability but not physical condition","A property listed on Superfund","A property with title defects"], correct:1,
+ explain:"<b>Stigmatized property</b> = associated with events that don't affect physical condition but may affect desirability (murder, suicide, hauntings, prior HIV+ occupant). Disclosure rules vary widely by state — some require disclosure, some prohibit it, some take a middle position (disclose if asked, don't volunteer). PA law addresses this in specific ways. Not about physical defects — about perceived stigma."},
+
+// ============================================================
+// SECTION VII — FINANCING & SETTLEMENT (7 items)
+// ============================================================
+
+{section:"VII. Financing & Settlement",
+ q:"Under TRID, a Loan Estimate (LE) must be provided within how many business days of a complete loan application?",
+ opts:["1 business day","3 business days","7 business days","10 business days"], correct:1,
+ explain:"<b>3 business days from receipt of a complete loan application.</b> The Closing Disclosure (CD) must be RECEIVED by the consumer at least <b>3 business days BEFORE consummation</b> (closing). Two different '3-day' rules — don't confuse them. LE = early (after application). CD = late (before closing). Source: 12 CFR §1026.19; CFPB."},
+
+{section:"VII. Financing & Settlement",
+ q:"Which of the following changes after Closing Disclosure delivery does NOT trigger a new 3-day waiting period?",
+ opts:["APR becomes inaccurate over tolerance","Loan product changes (fixed rate to ARM)","Prepayment penalty added","Borrower's mailing address changes"], correct:3,
+ explain:"<b>An address change does NOT trigger a new wait.</b> Only three specific changes restart the 3-day clock under TRID: (1) APR over tolerance (0.125% for fixed, 0.25% for ARM), (2) loan product change, (3) prepayment penalty added. Other changes can be disclosed at or before closing without restarting the clock. Administrative changes like address updates are not material loan terms."},
+
+{section:"VII. Financing & Settlement",
+ q:"USDA Rural Development loans are available for:",
+ opts:["Farm properties only","Rural housing only","Both rural housing AND farm loans","Urban multifamily housing"], correct:2,
+ explain:"<b>USDA serves BOTH rural housing AND farm loans.</b> The 'Department of Agriculture' name suggests farm-only, but USDA Rural Development is a major source of 0%-down home loans in qualifying rural areas. Loan terms commonly 33-38 years. Income limits apply. Don't be misled by the name — USDA housing loans are a significant program."},
+
+{section:"VII. Financing & Settlement",
+ q:"A borrower has a conventional mortgage with an LTV of 92%. Which is TRUE?",
+ opts:["No mortgage insurance is required","PMI is required; it automatically terminates at 78% LTV","FHA mortgage insurance is required","The loan does not qualify for sale to Fannie Mae"], correct:1,
+ explain:"<b>PMI is required when conventional LTV exceeds 80%.</b> Under the Homeowners Protection Act, PMI is AUTOMATICALLY TERMINATED when the loan reaches 78% LTV (based on original property value). Borrowers can REQUEST cancellation at 80% LTV. FHA loans have MIP (different program). This loan can still be sold to Fannie/Freddie if conforming."},
+
+{section:"VII. Financing & Settlement",
+ q:"The right of rescission under the Truth in Lending Act applies to:",
+ opts:["All real estate purchases","Refinances and home equity loans on the borrower's principal residence","Initial home purchase mortgages","Commercial loans"], correct:1,
+ explain:"<b>Right of rescission = 3 business days, refinances and home equity loans on principal residence ONLY.</b> Purchase money mortgages are EXCLUDED — no 3-day right to cancel when buying a home. Investment properties don't qualify. Saturdays count as business days for this purpose; Sundays and federal holidays do not."},
+
+{section:"VII. Financing & Settlement",
+ q:"Under RESPA, which of the following is PROHIBITED?",
+ opts:["A licensee receiving a referral fee from another licensee for a cooperative sale","A title company paying kickbacks to a real estate agent for referrals","A buyer paying the seller's closing costs by agreement","A lender requiring title insurance"], correct:1,
+ explain:"<b>RESPA Section 8(a) prohibits kickbacks and unearned fees between settlement service providers</b> on federally related mortgage loans (1-4 family residential). A title company paying an agent for referrals is a textbook Section 8(a) violation. Section 8(c) EXPLICITLY EXEMPTS cooperative commission splits between real estate licensees, so co-op referral fees between licensees are allowed."},
+
+{section:"VII. Financing & Settlement",
+ q:"In a deed of trust state, the THREE parties to the security instrument are:",
+ opts:["Buyer, seller, and broker","Trustor, trustee, and beneficiary","Mortgagor, mortgagee, and notary","Borrower, lender, and title insurer"], correct:1,
+ explain:"<b>Deed of trust = three-party security instrument:</b> <b>Trustor</b> (borrower) → <b>Trustee</b> (neutral third party who holds title) → <b>Beneficiary</b> (lender). On default, the trustee initiates foreclosure on the beneficiary's behalf — often through non-judicial foreclosure, which is faster than the judicial foreclosure required in mortgage states. PA is a MORTGAGE/lien-theory state, but the national exam tests both systems."},
+
+// ============================================================
+// SECTION VIII — MATH (10 items — heavier for commission + cap rate)
+// All Python-verified
+// ============================================================
+
+{section:"VIII. Math",
+ q:"A home sold for $285,000 and the total commission was $17,100. What is the commission rate?",
+ opts:["5.0%","5.5%","6.0%","6.5%"], correct:2,
+ explain:"<b>Commission Rate = Commission ÷ Sale Price = $17,100 ÷ $285,000 = 0.06 = 6.0%.</b> Divide the SMALLER number (commission) by the LARGER (sale price) to get the rate. If you get a number bigger than 1, you divided in the wrong direction. Sanity check: $285,000 × 0.06 = $17,100. ✓"},
+
+{section:"VIII. Math",
+ q:"A property sold for $445,000 with a 5.5% total commission. The listing and selling brokerages split 50/50. The listing salesperson keeps 70% of the listing brokerage's share. What does the listing salesperson earn?",
+ opts:["$5,600","$6,124","$8,566","$12,238"], correct:2,
+ explain:"<b>Multi-layer calculation:</b> Total = $445,000 × 0.055 = $24,475. Listing brokerage = $24,475 × 0.50 = $12,237.50. Listing salesperson = $12,237.50 × 0.70 = <b>$8,566</b>. Multiply through every layer. The trap ($12,238) is stopping at the brokerage share instead of finishing to the salesperson level. Also watch: the split is stated as 50/50 — but it could be 55/45, 60/40. Read carefully."},
+
+{section:"VIII. Math",
+ q:"A seller has a mortgage payoff of $220,000 and wants to net $45,000 after a 6% commission. The minimum sale price is (rounded):",
+ opts:["$264,530","$275,000","$281,915","$291,000"], correct:2,
+ explain:"<b>Sale Price = (Net + Mortgage) ÷ (1 − Commission Rate) = ($45,000 + $220,000) ÷ 0.94 = $265,000 ÷ 0.94 = $281,915.</b> DIVIDE by (1 − commission), don't multiply. Verify: $281,915 × 0.06 = $16,915 commission. $281,915 − $16,915 − $220,000 = $45,000 net. ✓ Common trap: $265,000 × 1.06 = $280,900 (multiplying — wrong)."},
+
+{section:"VIII. Math",
+ q:"A seller owes $158,000 on her mortgage and will have $6,200 in additional closing costs. She wants to net $25,000 after a 7% commission. The minimum sale price is (rounded):",
+ opts:["$203,441","$212,180","$189,200","$196,900"], correct:0,
+ explain:"<b>All deductions go in the numerator:</b> Sale Price = ($25,000 + $158,000 + $6,200) ÷ 0.93 = $189,200 ÷ 0.93 = <b>$203,441</b>. Verify: $203,441 × 0.07 = $14,241 commission. $203,441 − $14,241 − $158,000 − $6,200 = $25,000 net. ✓ Don't skip the closing costs — they get added just like the mortgage in the numerator."},
+
+{section:"VIII. Math",
+ q:"An office building has an NOI of $78,000. The market cap rate is 6.5%. The estimated value is:",
+ opts:["$507,000","$960,000","$1,200,000","$1,300,000"], correct:2,
+ explain:"<b>Value = NOI ÷ Cap Rate = $78,000 ÷ 0.065 = $1,200,000.</b> DIVIDE. Common trap: $78,000 × 6.5 = $507,000 (multiplying — wrong). Sanity check: 6.5% return on $1,200,000 is $78,000. Matches. Remember: NOI is calculated BEFORE debt service."},
+
+{section:"VIII. Math",
+ q:"An apartment building sold recently for $850,000 with an annual NOI of $63,750. The cap rate for this transaction is:",
+ opts:["6.5%","7.5%","8.5%","13.3%"], correct:1,
+ explain:"<b>Cap Rate = NOI ÷ Value = $63,750 ÷ $850,000 = 0.075 = 7.5%.</b> Divide NOI by sale price. Common trap: $850,000 ÷ $63,750 = 13.3 (inverted). Always divide the smaller (NOI) by the larger (value). Sanity check: 7.5% × $850,000 = $63,750. ✓"},
+
+{section:"VIII. Math",
+ q:"A property has gross scheduled income of $156,000, vacancy losses of 6%, and operating expenses of $42,500. Using a 7.5% cap rate, the estimated value is:",
+ opts:["$1,188,533","$1,388,533","$1,466,667","$1,514,000"], correct:1,
+ explain:"<b>Multi-step:</b> Vacancy = $156,000 × 0.06 = $9,360. EGI = $156,000 − $9,360 = $146,640. NOI = $146,640 − $42,500 = $104,140. Value = $104,140 ÷ 0.075 = <b>$1,388,533</b>. Watch: (1) always subtract vacancy from GSI first, (2) THEN subtract opex to get NOI, (3) THEN apply cap rate. Missing vacancy is a common error."},
+
+{section:"VIII. Math",
+ q:"A property is assessed at $175,000. The local mill rate is 28 mills. The annual property tax is:",
+ opts:["$490","$4,900","$49,000","$490,000"], correct:1,
+ explain:"<b>Annual Tax = (Assessed ÷ 1,000) × Mills = ($175,000 ÷ 1,000) × 28 = 175 × 28 = $4,900.</b> Or: $175,000 × 0.028 = $4,900 (1 mill = 0.001). The trap answers test decimal-point misplacement. Sanity check: a $175,000 home with a $4,900 annual tax = 2.8% effective rate — reasonable."},
+
+{section:"VIII. Math",
+ q:"A buyer puts $63,750 down on a $425,000 property. What is the LTV?",
+ opts:["15%","70%","85%","90%"], correct:2,
+ explain:"<b>Loan = Sale − Down = $425,000 − $63,750 = $361,250. LTV = Loan ÷ Value = $361,250 ÷ $425,000 = 0.85 = 85%.</b> At 85% LTV, PMI is required for a conventional loan (auto-cancels at 78%). Note: 15% is the down PERCENTAGE, not LTV. LTV always uses loan amount as the numerator and property value as the denominator."},
+
+{section:"VIII. Math",
+ q:"A rectangular parcel measures 400 feet by 275 feet. The area in acres (rounded to two decimals) is:",
+ opts:["1.90","2.53","3.20","4.60"], correct:1,
+ explain:"<b>Area = 400 × 275 = 110,000 sq ft. Acres = 110,000 ÷ 43,560 = 2.5253 ≈ 2.53 acres.</b> MEMORIZE: 1 acre = 43,560 sq ft (not provided at the test center). Calculate square footage first, then divide by 43,560. Sanity check: 110,000 sq ft is roughly 2.5 acres (100,000 sq ft would be 2.3, 130,000 would be 3.0). Matches."}
+];
+</script>
+
+<script>
+let currentQ = 0;
+let answers = [];
+let startTime = null;
+let timerInterval = null;
+const EXAM_TIME_SECONDS = 160 * 60;
+let reviewFilter = 'all';
+
+function startExam() {
+  currentQ = 0;
+  answers = [];
+  startTime = Date.now();
+  document.getElementById('start').style.display = 'none';
+  document.getElementById('exam').style.display = 'block';
+  startTimer();
+  renderQuestion();
+}
+
+function startTimer() {
+  const timerEl = document.getElementById('timer');
+  function tick() {
+    const elapsed = Math.floor((Date.now() - startTime) / 1000);
+    const remaining = Math.max(0, EXAM_TIME_SECONDS - elapsed);
+    const m = Math.floor(remaining / 60);
+    const s = remaining % 60;
+    timerEl.textContent = `${m}:${String(s).padStart(2,'0')}`;
+    timerEl.classList.toggle('warn', remaining < 900 && remaining >= 300);
+    timerEl.classList.toggle('danger', remaining < 300);
+    if (remaining === 0) {
+      clearInterval(timerInterval);
+      finishExam();
+    }
+  }
+  tick();
+  timerInterval = setInterval(tick, 1000);
+}
+
+function renderQuestion() {
+  const q = window.QUESTIONS[currentQ];
+  document.getElementById('progressNum').textContent = `${currentQ + 1} / ${window.QUESTIONS.length}`;
+  document.getElementById('progressBar').style.width = `${((currentQ + 1) / window.QUESTIONS.length) * 100}%`;
+  const container = document.getElementById('questionContainer');
+  container.innerHTML = `
+    <div class="card">
+      <span class="tag">${q.section}</span>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="opts">
+        ${q.opts.map((o, i) => `
+          <button class="opt" data-i="${i}" onclick="pickAnswer(${i})">
+            <span class="opt-letter">${String.fromCharCode(65 + i)}.</span>${o}
+          </button>
+        `).join('')}
+      </div>
+      <div id="afterCard"></div>
+    </div>
+  `;
+}
+
+function pickAnswer(i) {
+  const q = window.QUESTIONS[currentQ];
+  const opts = document.querySelectorAll('.opt');
+  opts.forEach(o => o.disabled = true);
+  const isCorrect = i === q.correct;
+  opts[i].classList.add(isCorrect ? 'correct' : 'wrong');
+  if (!isCorrect) opts[q.correct].classList.add('correct');
+  answers.push({ picked: i, isCorrect });
+
+  const after = document.getElementById('afterCard');
+  const isLast = currentQ === window.QUESTIONS.length - 1;
+  const verdict = isCorrect
+    ? `<div class="verdict correct"><span class="verdict-icon">✓</span> Correct</div>`
+    : `<div class="verdict wrong"><span class="verdict-icon">✗</span> Not quite — correct answer is <b>${String.fromCharCode(65 + q.correct)}</b></div>`;
+  after.innerHTML = `
+    ${verdict}
+    <div class="explain-box">${q.explain}</div>
+    <button class="next-btn" onclick="nextQuestion()">${isLast ? 'See results →' : 'Next question →'}</button>
+  `;
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= window.QUESTIONS.length) {
+    finishExam();
+  } else {
+    renderQuestion();
+  }
+}
+
+function exitExam() {
+  if (confirm("Exit the exam? Your progress will not be saved.")) {
+    if (timerInterval) clearInterval(timerInterval);
+    location.reload();
+  }
+}
+
+function finishExam() {
+  if (timerInterval) clearInterval(timerInterval);
+  const total = window.QUESTIONS.length;
+  const answered = answers.length;
+  const correct = answers.filter(a => a.isCorrect).length;
+  const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+  const passing = pct >= 75;
+  const elapsed = Math.floor((Date.now() - startTime) / 1000);
+  const min = Math.floor(elapsed / 60);
+  const sec = elapsed % 60;
+
+  document.getElementById('exam').style.display = 'none';
+  const resultEl = document.getElementById('result');
+  resultEl.style.display = 'block';
+
+  let message;
+  if (pct === 100) message = "Perfect. You're absolutely ready.";
+  else if (pct >= 90) message = "Outstanding. Retake is well within reach.";
+  else if (pct >= 85) message = "Strong. Polish the missed concepts.";
+  else if (pct >= 75) message = "Passing. Review misses below.";
+  else if (pct >= 65) message = "Close. Targeted review on lowest sections, then retry.";
+  else message = "More prep needed. Focus on the lowest-scoring sections.";
+
+  const bySection = {};
+  window.QUESTIONS.forEach((q, i) => {
+    if (!bySection[q.section]) bySection[q.section] = { correct: 0, total: 0 };
+    bySection[q.section].total++;
+    if (answers[i] && answers[i].isCorrect) bySection[q.section].correct++;
+  });
+  const sectionRows = Object.entries(bySection).map(([name, s]) => {
+    const p = Math.round((s.correct / s.total) * 100);
+    const cls = p >= 80 ? 'good' : p >= 65 ? 'warn' : 'bad';
+    return `<div class="section-row"><span class="sname">${name}</span><span class="sscore ${cls}">${s.correct}/${s.total} · ${p}%</span></div>`;
+  }).join('');
+
+  resultEl.innerHTML = `
+    <div class="result">
+      <div class="result-icon ${passing ? 'pass' : ''}">${passing ? '✓' : '✦'}</div>
+      <h2>Final prep complete</h2>
+      <p style="color: var(--ink-soft); margin: 0 0 4px;">${message}</p>
+      <div class="score ${passing ? 'pass' : ''}">${pct}%</div>
+      <div style="color: var(--ink-mute); font-size: 13px; margin-bottom: 4px;">
+        ${correct}/${total} correct${answered < total ? ` · ${total - answered} unanswered` : ''}
+      </div>
+      <div class="summary-grid">
+        <div class="summary-cell"><div class="lbl">Correct</div><div class="val good">${correct}</div></div>
+        <div class="summary-cell"><div class="lbl">Missed</div><div class="val warn">${answers.filter(a => !a.isCorrect).length}</div></div>
+        <div class="summary-cell"><div class="lbl">Time used</div><div class="val" style="font-size: 18px;">${min}:${String(sec).padStart(2,'0')}</div></div>
+        <div class="summary-cell"><div class="lbl">Status</div><div class="val ${passing ? 'good' : 'warn'}" style="font-size: 16px;">${passing ? 'PASSED ✓' : 'NOT YET'}</div></div>
+      </div>
+      <div class="section-breakdown">
+        <h3>Performance by section</h3>
+        ${sectionRows}
+      </div>
+      <div class="btn-row">
+        <button class="btn primary" onclick="location.reload()">Take it again</button>
+      </div>
+    </div>
+    <div class="review-section">
+      <h3>Question-by-question review</h3>
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="setFilter('all', this)">All (${total})</button>
+        <button class="filter-tab" onclick="setFilter('missed', this)">Missed (${answers.filter(a => !a.isCorrect).length})</button>
+        <button class="filter-tab" onclick="setFilter('correct', this)">Correct (${correct})</button>
+      </div>
+      <div id="reviewList"></div>
+    </div>
+  `;
+  renderReview();
+}
+
+function setFilter(filter, btnEl) {
+  reviewFilter = filter;
+  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  btnEl.classList.add('active');
+  renderReview();
+}
+
+function renderReview() {
+  const list = document.getElementById('reviewList');
+  let html = '';
+  window.QUESTIONS.forEach((q, i) => {
+    const a = answers[i];
+    if (!a) return;
+    if (reviewFilter === 'missed' && a.isCorrect) return;
+    if (reviewFilter === 'correct' && !a.isCorrect) return;
+    const yourLetter = String.fromCharCode(65 + a.picked);
+    const correctLetter = String.fromCharCode(65 + q.correct);
+    html += `
+      <div class="miss-item ${a.isCorrect ? 'correct-item' : ''}">
+        <div class="qnum">Q${i + 1} · ${q.section}</div>
+        <div class="qtext">${q.q}</div>
+        <div class="ans-row">
+          ${a.isCorrect
+            ? `<span class="yours correct-ans">Your answer: ${yourLetter}. ${q.opts[a.picked]} ✓</span>`
+            : `<span class="yours">Your answer: ${yourLetter}. ${q.opts[a.picked]}</span><br/>
+               <span class="right-ans">Correct: ${correctLetter}. ${q.opts[q.correct]}</span>`}
+        </div>
+        <div class="explanation">${q.explain}</div>
+      </div>
+    `;
+  });
+  if (!html) html = '<p style="color: var(--ink-mute); font-style: italic;">Nothing to show with this filter.</p>';
+  list.innerHTML = html;
+}
+</script>
+
+</body>
+</html>
